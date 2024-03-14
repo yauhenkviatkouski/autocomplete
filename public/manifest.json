@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "input_autofill_chrome_extension",
+  "version": "0.0.1",
+  "description": "Extension for saving prompts and easy adding to any input field",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "src/index/index.js"
+      ],
+      "css": [
+        "assets/style.css"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "<all_urls>"
+      ]
+    }
+  ]
+}

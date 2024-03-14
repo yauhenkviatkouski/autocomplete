@@ -1,17 +1,16 @@
 import { defineConfig } from "vite";
 import preact from "@preact/preset-vite";
+import manifestGenerator from "./scripts/manifestGenerator";
+import packageJson from "./package.json";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [preact()],
+  plugins: [manifestGenerator(), preact()],
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("web_page_script")) {
-            return "web_page_script";
-          }
-        },
+        entryFileNames: `${packageJson.name}.[name].js`,
+        assetFileNames: `${packageJson.name}.[name].css`,
       },
     },
   },

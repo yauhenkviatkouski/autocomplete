@@ -1,9 +1,12 @@
 {
   "private": true,
   "type": "module",
+  "name": "input_autofill_chrome_extension",
+  "version": "0.0.1",
+  "description": "Extension for saving prompts and easy adding to any input field",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp manifest.json dist/manifest.json",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
