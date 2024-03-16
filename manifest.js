@@ -6,12 +6,12 @@ const manifest = {
   version: packageJson.version,
   description: packageJson.description,
   action: {
-    default_popup: "index.html",
+    default_popup: "index.html#popup",
   },
   content_scripts: [
     {
-      js: ["src/index/index.js"],
-      css: ["assets/style.css"],
+      js: [`${packageJson.name}.index.js`],
+      css: [`${packageJson.name}.index.css`],
       matches: ["http://*/*", "https://*/*", "<all_urls>"],
     },
   ],

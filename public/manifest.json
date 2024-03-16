@@ -4,15 +4,15 @@
   "version": "0.0.1",
   "description": "Extension for saving prompts and easy adding to any input field",
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html#popup"
   },
   "content_scripts": [
     {
       "js": [
-        "src/index/index.js"
+        "input_autofill_chrome_extension.index.js"
       ],
       "css": [
-        "assets/style.css"
+        "input_autofill_chrome_extension.index.css"
       ],
       "matches": [
         "http://*/*",
