@@ -15,9 +15,7 @@
         "input_autofill_chrome_extension.index.css"
       ],
       "matches": [
-        "http://*/*",
-        "https://*/*",
-        "<all_urls>"
+        "https://*/*"
       ]
     }
   ]

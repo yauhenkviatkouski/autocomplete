@@ -12,7 +12,7 @@ const manifest = {
     {
       js: [`${packageJson.name}.index.js`],
       css: [`${packageJson.name}.index.css`],
-      matches: ["http://*/*", "https://*/*", "<all_urls>"],
+      matches: ["https://*/*"],
     },
   ],
 };
