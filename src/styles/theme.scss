@@ -1,0 +1,5 @@
+$base-size: 4px;
+
+@function baseSize($n: 1) {
+  @return $base-size * $n;
+}

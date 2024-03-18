@@ -1,13 +1,21 @@
-import { useState } from 'preact/hooks';
-import { MainPopup } from '../MainPopup';
-import style from './style.module.scss';
+import { useState } from "preact/hooks";
+import { PlusIcon } from "../Icons";
+import { MainPopup } from "../MainPopup";
+import { Button } from "../Shared";
+import style from "./style.module.scss";
 
 const PopupButton = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   return (
-    <div className={style['popup-button']}>
+    <div className={style["popup-button-container"]}>
       {isPopupVisible && <MainPopup />}
-      <button onClick={() => setIsPopupVisible(true)}>PB</button>
+      <Button
+        type="icon"
+        aria-label="Add text"
+        onClick={() => setIsPopupVisible(true)}
+      >
+        <PlusIcon />
+      </Button>
     </div>
   );
 };

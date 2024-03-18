@@ -1,4 +1,15 @@
-.popup-button {
+@import "../../styles/theme.scss";
+
+.popup-button-container {
   position: absolute;
-  top: -40px;
+  top: -(baseSize(10));
+
+  button {
+    opacity: 40%;
+
+    svg {
+      height: baseSize(6);
+      width: baseSize(6);
+    }
+  }
 }
