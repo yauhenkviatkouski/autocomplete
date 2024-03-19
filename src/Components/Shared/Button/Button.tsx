@@ -10,7 +10,7 @@ const Button: FC<HTMLAttributes<HTMLButtonElement>> & { type?: "icon" } = (
       [style.button_icon]: props.type === "icon",
     })}
     {...props}
-  ></button>
+  />
 );
 
 export default Button;
