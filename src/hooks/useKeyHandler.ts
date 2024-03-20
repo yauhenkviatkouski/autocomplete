@@ -4,6 +4,7 @@ const useKeyHandler = (keyToTrigger: string, callback: () => void): void => {
   const handleKeyPress = useCallback(
     (e: KeyboardEvent): void => {
       if (e.key === keyToTrigger) {
+        e.preventDefault();
         callback();
       }
     },

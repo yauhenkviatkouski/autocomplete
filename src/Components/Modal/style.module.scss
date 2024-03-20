@@ -1,6 +1,7 @@
+@import "../../styles/theme.scss";
+
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  position: absolute;
+  bottom: baseSize(10);
   background-color: bisque;
 }

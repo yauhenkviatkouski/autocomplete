@@ -2,7 +2,7 @@
 
 .popup-button-container {
   position: absolute;
-  top: -(baseSize(10));
+  bottom: baseSize(4);
 
   button {
     opacity: 40%;
