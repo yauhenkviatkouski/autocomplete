@@ -7,10 +7,6 @@ import { PopupButton } from "./Components/PopupButton";
 
 console.log("extension loaded");
 
-// console.log(process.env);
-const q = 1;
-const r = 1;
-// const waassdasdasd;
 const isDevelopmentMode = location.hostname.includes("127");
 const chromeExtensionPanelContainer = document.getElementById(packageJson.name);
 // TODO: textArea - any area from different GPT resources
