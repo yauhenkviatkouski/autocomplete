@@ -1,22 +1,38 @@
 import { render } from "preact";
-import packageJson from "../package.json";
-import { MainPopup } from "./Components/MainPopup";
+import { PopupButton } from "./Components/PopupButton";
+import { DevelopmentPage } from "./Components/DevelopmentPage";
+import { CHROME_PANEL_CONTAINER_ID, LOCALHOST } from "./variables";
+
 import style from "./style.module.scss";
 
-import { PopupButton } from "./Components/PopupButton";
+const renderPopupButton = () => {
+  const textarea = document.getElementById("prompt-textarea");
 
-console.log("extension loaded");
+  if (textarea) {
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = style["popup-container"];
+    textarea.parentElement.insertBefore(buttonContainer, textarea);
+    render(<PopupButton />, buttonContainer);
+  }
+};
 
-const isDevelopmentMode = location.hostname.includes("127");
-const chromeExtensionPanelContainer = document.getElementById(packageJson.name);
-// TODO: textArea - any area from different GPT resources
-const textarea = document.getElementById("prompt-textarea");
+const renderApp = () => {
+  const isDevelopmentMode = location.hostname.includes(LOCALHOST);
+  const chromeExtensionPanelContainer = document.getElementById(
+    CHROME_PANEL_CONTAINER_ID
+  );
 
-if (!isDevelopmentMode && chromeExtensionPanelContainer) {
-  render(<MainPopup />, document.getElementById(packageJson.name));
-} else if (textarea) {
-  const buttonContainer = document.createElement("div");
-  buttonContainer.className = style["popup-container"];
-  textarea.parentElement.insertBefore(buttonContainer, textarea);
-  render(<PopupButton />, buttonContainer);
-}
+  if (!chromeExtensionPanelContainer) {
+    renderPopupButton();
+    return;
+  }
+
+  if (isDevelopmentMode) {
+    render(<DevelopmentPage />, chromeExtensionPanelContainer);
+    renderPopupButton();
+  } else {
+    render(<p>Settings</p>, chromeExtensionPanelContainer);
+  }
+};
+
+renderApp();
