@@ -6,10 +6,14 @@ const Button: FC<HTMLAttributes<HTMLButtonElement>> & { type?: "icon" } = (
   props
 ) => (
   <button
-    class={classNames(style.button, {
-      [style.button_icon]: props.type === "icon",
-    })}
     {...props}
+    className={classNames(
+      style.button,
+      {
+        [style.button_icon]: props.type === "icon",
+      },
+      props.className
+    )}
   />
 );
 

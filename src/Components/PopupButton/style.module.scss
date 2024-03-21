@@ -4,12 +4,18 @@
   position: absolute;
   bottom: baseSize(4);
 
-  button {
+  > button {
     opacity: 40%;
 
     svg {
       height: baseSize(6);
       width: baseSize(6);
+    }
+  }
+
+  &_visible {
+    > button {
+      opacity: 1;
     }
   }
 }
