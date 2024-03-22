@@ -3,5 +3,18 @@
 .modal {
   position: absolute;
   bottom: baseSize(10);
-  background-color: bisque;
+  background-color: rgb(218, 230, 171);
+  padding: baseSize();
+  border: 1px solid gray;
+  border-radius: baseSize();
+}
+
+.modal__header {
+  display: flex;
+  justify-content: end;
+
+  button {
+    width: baseSize(6);
+    height: baseSize(6);
+  }
 }

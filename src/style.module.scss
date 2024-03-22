@@ -1,5 +1,12 @@
+@import "theme";
+
 .popup-container {
   position: fixed;
   height: 0;
   width: 0;
+
+  svg {
+    height: baseSize(4);
+    width: baseSize(4);
+  }
 }
