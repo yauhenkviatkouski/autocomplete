@@ -1,6 +1,5 @@
-import { Header } from "../Header";
-import { List } from "../List";
-
+import { Header } from "./Header";
+import { List } from "./List";
 import style from "./style.module.scss";
 
 const MainPopup = () => {
