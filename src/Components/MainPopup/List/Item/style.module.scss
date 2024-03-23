@@ -1,0 +1,13 @@
+@import "theme";
+
+.item {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: baseSize();
+}
+
+.item__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}

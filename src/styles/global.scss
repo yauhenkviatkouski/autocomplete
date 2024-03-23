@@ -1,0 +1,53 @@
+/* Document
+ * ========================================================================== */
+
+html {
+  line-height: 1.15;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Lists
+ * ========================================================================== */
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Forms
+ * ========================================================================== */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+}
+
+/* Images
+ * ========================================================================== */
+
+img {
+  border-style: none;
+}
+
+/* Links
+ * ========================================================================== */
+
+a {
+  text-decoration: none;
+}
+
+/* Remove default link styles */
+a:hover,
+a:focus {
+  text-decoration: underline;
+}

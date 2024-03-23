@@ -1,10 +1,12 @@
 @import "theme";
+@import "global";
 
 .popup-container {
   position: fixed;
   height: 0;
   width: 0;
 
+  // global styles
   svg {
     height: baseSize(4);
     width: baseSize(4);
