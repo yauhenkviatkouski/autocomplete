@@ -4,7 +4,7 @@ const DevelopmentPage = () => {
   return (
     <main class={style.main}>
       <section>
-        <textarea id="prompt-textarea"></textarea>
+        <textarea id="prompt-textarea" />
       </section>
     </main>
   );

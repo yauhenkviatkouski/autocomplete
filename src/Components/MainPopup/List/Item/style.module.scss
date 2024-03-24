@@ -6,6 +6,10 @@
   gap: baseSize();
 }
 
+.item_dragging {
+  background-color: rgb(252 253 249 / 43%);
+}
+
 .item__title {
   overflow: hidden;
   text-overflow: ellipsis;
