@@ -23,6 +23,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
+    project: "./tsconfig.json",
   },
   plugins: ["@typescript-eslint", "react"],
   rules: {
@@ -30,6 +31,9 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     semi: ["error", "always"],
+
+    "@typescript-eslint/no-unsafe-call": "error",
+    "@typescript-eslint/no-explicit-any": "error",
   },
   settings: {
     jest: {
