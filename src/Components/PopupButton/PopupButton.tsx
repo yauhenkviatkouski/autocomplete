@@ -1,5 +1,4 @@
 import { useState } from "preact/hooks";
-import { POPUP_BUTTON_CONTAINER_ID } from "../../variables";
 import { PlusIcon } from "../Icons";
 import { MainPopup } from "../MainPopup";
 import { Modal } from "../Modal";
@@ -11,7 +10,6 @@ const PopupButton = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   return (
     <div
-      id={POPUP_BUTTON_CONTAINER_ID}
       className={classNames(style["popup-button-container"], {
         [style["popup-button-container_visible"]]: isPopupVisible,
       })}
