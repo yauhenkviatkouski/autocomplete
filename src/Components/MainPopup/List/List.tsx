@@ -16,27 +16,24 @@ const List = () => {
   });
 
   return (
-    <div>
-      List with items
-      <ul>
-        {items.map((item, index) => (
-          <li
-            key={item.id}
-            draggable
-            onDragStart={(e) => handleDragStart(e, index)}
-            onDragOver={(e) => handleDragOver(e, index)}
-            onDrop={handleDrop}
-          >
-            <Item
-              title={item.title}
-              value={item.value}
-              position={item.position}
-              isDragging={index === draggedItemIndex}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {items.map((item, index) => (
+        <li
+          key={item.id}
+          draggable
+          onDragStart={(e) => handleDragStart(e, index)}
+          onDragOver={(e) => handleDragOver(e, index)}
+          onDrop={handleDrop}
+        >
+          <Item
+            title={item.title}
+            value={item.value}
+            position={item.position}
+            isDragging={index === draggedItemIndex}
+          />
+        </li>
+      ))}
+    </ul>
   );
 };
 

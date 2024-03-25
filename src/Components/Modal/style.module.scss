@@ -3,7 +3,7 @@
 .modal {
   position: absolute;
   bottom: baseSize(14); // 56px
-  background-color: rgb(83 85 77);
+  background-color: rgb(213, 221, 189);
   padding: baseSize();
   border: 1px solid gray;
   border-radius: baseSize();
@@ -12,6 +12,7 @@
 .modal__header {
   display: flex;
   justify-content: end;
+  margin-bottom: baseSize();
 
   button {
     width: baseSize(6);

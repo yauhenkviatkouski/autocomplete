@@ -1,10 +1,15 @@
 @import "theme";
-@import "global";
+@import "normalize";
 
 .popup-container {
+  @include normalize;
+
   position: fixed;
   height: 0;
   width: 0;
+
+  color: rgb(14, 14, 14);
+  font-family: Helvetica, sans-serif;
 
   // global styles
   svg {
