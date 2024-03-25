@@ -4,7 +4,7 @@
   position: absolute;
   bottom: baseSize(14); // 56px
   background-color: rgb(213, 221, 189);
-  padding: baseSize();
+  padding: baseSize(2);
   border: 1px solid gray;
   border-radius: baseSize();
 }
@@ -12,7 +12,7 @@
 .modal__header {
   display: flex;
   justify-content: end;
-  margin-bottom: baseSize();
+  margin-bottom: baseSize(2);
 
   button {
     width: baseSize(6);

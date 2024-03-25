@@ -1,6 +1,8 @@
 @import "theme";
 
 .button {
+  min-width: baseSize(6);
+  min-height: baseSize(6);
   appearance: none;
   backface-visibility: hidden;
   background-color: #27ae60;

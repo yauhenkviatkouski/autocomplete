@@ -3,7 +3,9 @@
 .item {
   display: flex;
   flex-wrap: nowrap;
-  gap: baseSize();
+  align-items: center;
+  gap: baseSize(2);
+  padding: baseSize();
 }
 
 .item_dragging {
@@ -11,6 +13,7 @@
 }
 
 .item__title {
+  flex-grow: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   text-wrap: nowrap;

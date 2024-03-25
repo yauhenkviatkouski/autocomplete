@@ -3,6 +3,7 @@ import { useState, useCallback } from "preact/hooks";
 
 type UseDragAndDropProps = {
   initialItems: Array<Item>;
+  // eslint-disable-next-line no-unused-vars
   onDrop?: (items: Array<Item>) => void;
 };
 export const useDragAndDrop = ({

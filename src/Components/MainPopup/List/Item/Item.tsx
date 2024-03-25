@@ -1,5 +1,8 @@
 import classNames from "classnames";
 import style from "./style.module.scss";
+import { Button } from "../../../Shared";
+import EditIcon from "../../../Icons/EditIcon";
+import TrashIcon from "../../../Icons/TrashIcon";
 
 type ItemProps = {
   title: string;
@@ -17,6 +20,12 @@ const Item = (props: ItemProps) => {
     >
       <div>{props.position}</div>
       <div className={style.item__title}>{props.title}</div>
+      <Button type="icon">
+        <EditIcon />
+      </Button>
+      <Button type="icon">
+        <TrashIcon />
+      </Button>
     </div>
   );
 };

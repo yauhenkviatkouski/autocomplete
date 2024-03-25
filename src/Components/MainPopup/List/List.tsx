@@ -2,6 +2,8 @@ import { listFixture } from "../../../fixtures/listFixture";
 import { Item } from "./Item";
 import { useDragAndDrop } from "../../../hooks/useDragAndDrop";
 
+import style from "./style.module.scss";
+
 const List = () => {
   const sortedList = listFixture.sort((a, b) => a.position - b.position);
   const {
@@ -16,7 +18,7 @@ const List = () => {
   });
 
   return (
-    <ul>
+    <ul className={style.list}>
       {items.map((item, index) => (
         <li
           key={item.id}
