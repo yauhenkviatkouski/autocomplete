@@ -19,7 +19,7 @@ const Item = (props: ItemProps) => {
       })}
     >
       <div>{props.position}</div>
-      <div className={style.item__title}>{props.title}</div>
+      <button className={style.item__title}>{props.title}</button>
       <Button type="icon">
         <EditIcon />
       </Button>

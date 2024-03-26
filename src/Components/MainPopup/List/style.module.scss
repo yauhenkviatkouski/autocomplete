@@ -1,6 +1,10 @@
 @import "theme";
 
-.list {
+.list li {
   overflow: auto;
   max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: baseSize();
+  padding: 1px 0;
 }

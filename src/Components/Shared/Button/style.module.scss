@@ -31,8 +31,9 @@
   vertical-align: top;
   white-space: nowrap;
 
-  &:hover {
-    background-color: #1e8449;
+  &:hover,
+  &:focus-visible {
+    background-color: #166336;
     opacity: 1;
     transform: translateY(0);
     transition-duration: 0.35s;

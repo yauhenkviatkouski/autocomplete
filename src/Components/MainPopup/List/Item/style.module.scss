@@ -5,7 +5,6 @@
   flex-wrap: nowrap;
   align-items: center;
   gap: baseSize(2);
-  padding: baseSize();
 }
 
 .item_dragging {
@@ -13,8 +12,21 @@
 }
 
 .item__title {
+  background: none;
+  box-shadow: none;
+  border: none;
+  text-align: start;
+
   flex-grow: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   text-wrap: nowrap;
+  padding: baseSize();
+  border-radius: baseSize();
+
+  &:hover,
+  &:focus-visible {
+    outline: 1px solid gray;
+    cursor: pointer;
+  }
 }
