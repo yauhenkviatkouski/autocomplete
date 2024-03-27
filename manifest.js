@@ -5,6 +5,7 @@ const manifest = {
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
+  permissions: ["storage"],
   action: {
     default_popup: "index.html#popup",
   },
