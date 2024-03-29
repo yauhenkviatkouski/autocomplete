@@ -3,24 +3,26 @@ import { Item } from "../../types";
 import { CHROME_STORAGE_KEY } from "../../variables";
 import { AbstractStorage } from "../AbstractStorage/AbstractStorage";
 
-export class ChromeStorage extends AbstractStorage {
+export class LocalStorage extends AbstractStorage {
   private onUpdateItems: (items: Array<Item>) => void;
 
   constructor(onUpdateItems: (items: Array<Item>) => void) {
     super();
     this.onUpdateItems = onUpdateItems;
 
-    chrome.storage.sync.onChanged.addListener((changes) => {
-      const items = (changes[CHROME_STORAGE_KEY]?.newValue as Item[]) || [];
-      this.onUpdateItems(items);
+    window.addEventListener("storage", (event) => {
+      if (event.key === CHROME_STORAGE_KEY) {
+        const items = JSON.parse(event.newValue || "[]") as Item[];
+        this.onUpdateItems(items);
+      }
     });
   }
 
   async setItems(items: Item[]): Promise<void> {
     try {
       const serializedItems = JSON.stringify(items);
-      await chrome.storage.sync.set({ [CHROME_STORAGE_KEY]: serializedItems });
-      console.log("Items are set in storage.", await this.getItems());
+      localStorage.setItem(CHROME_STORAGE_KEY, serializedItems);
+      console.log("Items are set in localStorage.", await this.getItems());
     } catch (e) {
       throw new TypeError(`Items cannot be serialized to JSON: ${e}`);
     }
@@ -28,10 +30,7 @@ export class ChromeStorage extends AbstractStorage {
 
   async getItems(): Promise<Item[] | undefined> {
     try {
-      const storedData = await chrome.storage.sync.get(CHROME_STORAGE_KEY);
-      const serializedItems = storedData[CHROME_STORAGE_KEY] as
-        | string
-        | undefined;
+      const serializedItems = localStorage.getItem(CHROME_STORAGE_KEY);
       if (!serializedItems) {
         return undefined;
       }
@@ -47,7 +46,7 @@ export class ChromeStorage extends AbstractStorage {
   async updateItem(item: Item): Promise<void> {
     const items = await this.getItems();
     if (!items) {
-      throw new Error("No items found in storage");
+      throw new Error("No items found in localStorage");
     }
 
     const updatedItems = items.map((existingItem) =>
@@ -72,7 +71,7 @@ export class ChromeStorage extends AbstractStorage {
     return item;
   }
 
-  async removeItem(id: string): Promise<number> {
+  async removeItem(id: string): Promise<void> {
     const items = await this.getItems();
     if (!items) {
       return;

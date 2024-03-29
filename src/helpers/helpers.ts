@@ -1,10 +1,12 @@
-export const generateID = () => {
+import { Item } from "../types";
+
+export const generateUniqueId = (existingItems: Item[] = []): string => {
+  const usedIds = new Set(existingItems.map((item) => item.id));
   let id = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  for (let i = 0; i < 3; i++) {
-    id += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  id += new Date().getTime().toString().slice(5);
+  do {
+    id = `${new Date().getTime()}-${Math.random()
+      .toString(36)
+      .substring(2, 9)}`;
+  } while (usedIds.has(id));
   return id;
 };
