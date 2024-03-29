@@ -1,21 +1,35 @@
 import { listFixture } from "../../../fixtures/listFixture";
 import { Item } from "./Item";
+import { Item as ItemType } from "../../../types";
 import { useDragAndDrop } from "../../../hooks/useDragAndDrop";
 
 import style from "./style.module.scss";
+import { useContext, useEffect, useMemo, useState } from "preact/hooks";
+import { ChromeStorageContext } from "../../ChromeStorageContext";
 
 const List = () => {
-  const sortedList = listFixture.sort((a, b) => a.position - b.position);
-  const {
-    handleDragOver,
-    handleDragStart,
-    handleDrop,
-    items,
-    draggedItemIndex,
-  } = useDragAndDrop({
-    initialItems: sortedList,
-    onDrop: (items) => console.log("dropped items", items),
-  });
+  const chromeStorage = useContext(ChromeStorageContext);
+  const [items, setItems] = useState([]);
+  const sortedList = useMemo(
+    () => items.sort((a, b) => a.position - b.position),
+    [items]
+  );
+
+  useEffect(() => {
+    chromeStorage.getItems().then((items) => setItems(items));
+  }, []);
+
+  const onChangeItems = (items: ItemType[]) => {
+    chromeStorage.setItems(items).then(() => {
+      console.log("Items are set");
+    });
+  };
+
+  const { handleDragOver, handleDragStart, handleDrop, draggedItemIndex } =
+    useDragAndDrop({
+      items: sortedList,
+      onChangeItemsPosition: onChangeItems,
+    });
 
   return (
     <ul className={style.list}>
