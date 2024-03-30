@@ -17,23 +17,19 @@ type ModalProps = {
 const Modal = (props: ModalProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleClose = (): void => {
-    props.onClose();
-  };
-
-  useOutsideClick(ref, handleClose);
-  useKeyHandler("Escape", handleClose);
+  useOutsideClick(ref, props.onClose);
+  useKeyHandler("Escape", props.onClose);
 
   return createPortal(
     <div ref={ref} className={style.modal}>
       <div className={style.modal__header}>
-        <Button onClick={handleClose}>
+        <Button onClick={props.onClose}>
           <CloseIcon />
         </Button>
       </div>
       {props.children}
     </div>,
-    document.getElementById(POPUP_BUTTON_CONTAINER_ID)
+    document.getElementById(POPUP_BUTTON_CONTAINER_ID) as HTMLElement
   );
 };
 

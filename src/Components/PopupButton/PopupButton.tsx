@@ -21,11 +21,7 @@ const PopupButton = () => {
             <MainPopup />
           </Modal>
         )}
-        <Button
-          type="icon"
-          aria-label="Add text"
-          onClick={() => setIsPopupVisible(true)}
-        >
+        <Button type="icon" aria-label="Add text" onClick={() => setIsPopupVisible(true)}>
           <PlusIcon />
         </Button>
       </div>
