@@ -26,21 +26,17 @@ export class ChromeStorage extends AbstractStorage {
     }
   }
 
-  async getItems(): Promise<Item[] | undefined> {
+  async getItems(): Promise<Item[]> {
     try {
       const storedData = await chrome.storage.sync.get(CHROME_STORAGE_KEY);
-      const serializedItems = storedData[CHROME_STORAGE_KEY] as
-        | string
-        | undefined;
+      const serializedItems = storedData[CHROME_STORAGE_KEY] as string | undefined;
       if (!serializedItems) {
-        return undefined;
+        return [];
       }
       const parsedItems = JSON.parse(serializedItems) as Item[];
       return parsedItems;
     } catch (e) {
-      throw new TypeError(
-        `Invalid data stored for key ${CHROME_STORAGE_KEY}: ${e}`
-      );
+      throw new TypeError(`Invalid data stored for key ${CHROME_STORAGE_KEY}: ${e}`);
     }
   }
 
@@ -72,7 +68,7 @@ export class ChromeStorage extends AbstractStorage {
     return item;
   }
 
-  async removeItem(id: string): Promise<number> {
+  async removeItem(id: string): Promise<void> {
     const items = await this.getItems();
     if (!items) {
       return;

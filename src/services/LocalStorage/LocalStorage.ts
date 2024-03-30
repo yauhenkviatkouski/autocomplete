@@ -10,36 +10,36 @@ export class LocalStorage extends AbstractStorage {
     super();
     this.onUpdateItems = onUpdateItems;
 
-    window.addEventListener("storage", (event) => {
-      if (event.key === CHROME_STORAGE_KEY) {
-        const items = JSON.parse(event.newValue || "[]") as Item[];
-        this.onUpdateItems(items);
-      }
-    });
+    // window.addEventListener("storage", (event) => {
+    //   console.log("🚀 > LocalStorage > window.addEventListener > event:", event);
+    //   if (event.key === CHROME_STORAGE_KEY) {
+    //     const items = JSON.parse(event.newValue || "[]") as Item[];
+    //     this.onUpdateItems(items);
+    //   }
+    // });
   }
 
   async setItems(items: Item[]): Promise<void> {
     try {
       const serializedItems = JSON.stringify(items);
       localStorage.setItem(CHROME_STORAGE_KEY, serializedItems);
+      this.onUpdateItems(items);
       console.log("Items are set in localStorage.", await this.getItems());
     } catch (e) {
       throw new TypeError(`Items cannot be serialized to JSON: ${e}`);
     }
   }
 
-  async getItems(): Promise<Item[] | undefined> {
+  async getItems(): Promise<Item[]> {
     try {
       const serializedItems = localStorage.getItem(CHROME_STORAGE_KEY);
       if (!serializedItems) {
-        return undefined;
+        return [];
       }
       const parsedItems = JSON.parse(serializedItems) as Item[];
       return parsedItems;
     } catch (e) {
-      throw new TypeError(
-        `Invalid data stored for key ${CHROME_STORAGE_KEY}: ${e}`
-      );
+      throw new TypeError(`Invalid data stored for key ${CHROME_STORAGE_KEY}: ${e}`);
     }
   }
 

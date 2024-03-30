@@ -13,15 +13,7 @@ type ItemProps = {
 
 const Item = (props: ItemProps) => {
   const onClick = () => {
-    chrome.storage.sync.set({ key: "some value" }).then(() => {
-      console.log("Value is set");
-
-      chrome.storage.sync.get(["key"]).then((result) => {
-        console.log(`Value is ${result.key}`);
-      });
-    });
-
-    console.log("clicked");
+    console.log("clicked", props.title);
   };
   return (
     <div

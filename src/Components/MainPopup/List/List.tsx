@@ -1,39 +1,32 @@
-import { listFixture } from "../../../fixtures/listFixture";
 import { Item } from "./Item";
-import { Item as ItemType } from "../../../types";
 import { useDragAndDrop } from "../../../hooks/useDragAndDrop";
 
 import style from "./style.module.scss";
-import { useContext, useEffect, useMemo, useState } from "preact/hooks";
-import { StorageContext } from "../../StorageContext";
+import { useMemo } from "preact/hooks";
+import { useGetStorageContext } from "../../StorageContext";
 
 const List = () => {
-  const storage = useContext(StorageContext);
-  const [items, setItems] = useState<ItemType[]>([]);
+  const { items, storage } = useGetStorageContext();
+
   const sortedList = useMemo(
     () => items.sort((a, b) => a.position - b.position),
     [items]
   );
 
-  useEffect(() => {
-    storage?.getItems().then((items) => setItems(items));
-  }, [storage]);
-
-  const onChangeItems = (items: ItemType[]) => {
-    storage.setItems(items).then(() => {
-      console.log("Items are set");
-    });
-  };
-
-  const { handleDragOver, handleDragStart, handleDrop, draggedItemIndex } =
-    useDragAndDrop({
-      initialItems: sortedList,
-      onDrop: onChangeItems,
-    });
+  const {
+    handleDragOver,
+    handleDragStart,
+    handleDrop,
+    draggedItemIndex,
+    items: draggableItems,
+  } = useDragAndDrop({
+    initialItems: sortedList,
+    onDrop: storage.setItems,
+  });
 
   return (
     <ul className={style.list}>
-      {items.map((item, index) => (
+      {draggableItems.map((item, index) => (
         <li
           key={item.id}
           draggable

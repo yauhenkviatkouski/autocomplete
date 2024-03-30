@@ -1,27 +1,27 @@
 import { Item } from "../types";
-import { useState, useCallback } from "preact/hooks";
+import { useState, useCallback, useEffect } from "preact/hooks";
 
 type UseDragAndDropProps = {
   initialItems: Array<Item>;
-  // eslint-disable-next-line no-unused-vars
-  onDrop?: (items: Array<Item>) => void;
+  onDrop: (items: Array<Item>) => void;
 };
-export const useDragAndDrop = ({
-  initialItems,
-  onDrop,
-}: UseDragAndDropProps) => {
+export const useDragAndDrop = ({ initialItems, onDrop }: UseDragAndDropProps) => {
   const [items, setItems] = useState(initialItems);
-  const [draggedItemIndex, setDraggedItemIndex] = useState<number>(null);
+  const [draggedItemIndex, setDraggedItemIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    setItems(initialItems);
+  }, [initialItems]);
 
   const handleDragStart = useCallback((e: DragEvent, index: number): void => {
-    e.dataTransfer.setData("itemIndex", index.toString());
+    e.dataTransfer?.setData("itemIndex", index.toString());
     setDraggedItemIndex(index);
   }, []);
 
   const handleDragOver = useCallback(
     (e: DragEvent, index: number): void => {
       e.preventDefault();
-      if (index !== draggedItemIndex) {
+      if (index !== draggedItemIndex && draggedItemIndex !== null) {
         const copiedItems: Array<Item> = [...items];
         const draggedItem: Item = copiedItems[draggedItemIndex];
         copiedItems.splice(draggedItemIndex, 1);

@@ -1,4 +1,3 @@
-import { useContext, useEffect, useState } from "preact/hooks";
 import { Button } from "../Shared";
 import { List } from "./List";
 import style from "./style.module.scss";
