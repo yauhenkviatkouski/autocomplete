@@ -6,7 +6,8 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "preact",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
   ],
   overrides: [
     {
@@ -23,7 +24,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
-    project: "./tsconfig.json",
   },
   plugins: ["@typescript-eslint", "react"],
   rules: {
@@ -31,13 +31,10 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     semi: ["error", "always"],
-
-    "@typescript-eslint/no-unsafe-call": "error",
-    "@typescript-eslint/no-explicit-any": "error",
   },
   settings: {
-    jest: {
-      version: "latest",
+    react: {
+      version: "16",
     },
   },
 };
