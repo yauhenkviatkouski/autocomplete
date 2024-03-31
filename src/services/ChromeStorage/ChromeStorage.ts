@@ -40,23 +40,21 @@ export class ChromeStorage extends AbstractStorage {
     }
   }
 
-  async updateItem(item: Item): Promise<void> {
+  async updateItem(partialItem: Omit<Item, "position">): Promise<void> {
     const items = await this.getItems();
     if (!items) {
       throw new Error("No items found in storage");
     }
 
     const updatedItems = items.map((existingItem) =>
-      existingItem.id === item.id ? item : existingItem
+      existingItem.id === partialItem.id
+        ? { ...existingItem, ...partialItem }
+        : existingItem
     );
     await this.setItems(updatedItems);
   }
 
-  async addItem(partialItem: {
-    value: string;
-    position: number;
-    title: string;
-  }): Promise<Item> {
+  async addItem(partialItem: Omit<Item, "id">): Promise<Item> {
     const items = (await this.getItems()) || [];
     const uniqueId = generateUniqueId(items);
     const item: Item = {

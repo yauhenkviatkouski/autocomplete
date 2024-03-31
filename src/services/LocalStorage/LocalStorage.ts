@@ -9,14 +9,6 @@ export class LocalStorage extends AbstractStorage {
   constructor(onUpdateItems: (items: Array<Item>) => void) {
     super();
     this.onUpdateItems = onUpdateItems;
-
-    // window.addEventListener("storage", (event) => {
-    //   console.log("🚀 > LocalStorage > window.addEventListener > event:", event);
-    //   if (event.key === CHROME_STORAGE_KEY) {
-    //     const items = JSON.parse(event.newValue || "[]") as Item[];
-    //     this.onUpdateItems(items);
-    //   }
-    // });
   }
 
   async setItems(items: Item[]): Promise<void> {
@@ -26,7 +18,7 @@ export class LocalStorage extends AbstractStorage {
       this.onUpdateItems(items);
       console.log("Items are set in localStorage.", await this.getItems());
     } catch (e) {
-      throw new TypeError(`Items cannot be serialized to JSON: ${e}`);
+      throw new TypeError(`Error during saving Items: ${e}`);
     }
   }
 
@@ -43,23 +35,21 @@ export class LocalStorage extends AbstractStorage {
     }
   }
 
-  async updateItem(item: Item): Promise<void> {
+  async updateItem(partialItem: Omit<Item, "position">): Promise<void> {
     const items = await this.getItems();
     if (!items) {
       throw new Error("No items found in localStorage");
     }
 
     const updatedItems = items.map((existingItem) =>
-      existingItem.id === item.id ? item : existingItem
+      existingItem.id === partialItem.id
+        ? { ...existingItem, ...partialItem }
+        : existingItem
     );
     await this.setItems(updatedItems);
   }
 
-  async addItem(partialItem: {
-    value: string;
-    position: number;
-    title: string;
-  }): Promise<Item> {
+  async addItem(partialItem: Omit<Item, "id">): Promise<Item> {
     const items = (await this.getItems()) || [];
     const uniqueId = generateUniqueId(items);
     const item: Item = {

@@ -2,7 +2,7 @@ import style from "./style.module.scss";
 
 const DevelopmentPage = () => {
   return (
-    <main class={style.main}>
+    <main className={style.main}>
       <section>
         <textarea id="prompt-textarea" />
       </section>

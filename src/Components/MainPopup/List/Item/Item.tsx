@@ -7,6 +7,7 @@ import { useState } from "preact/hooks";
 import EditNotePopup from "../../../EditNotePopup/EditNotePopup";
 
 type ItemProps = {
+  id: string;
   title: string;
   value: string;
   position: number;
@@ -38,6 +39,7 @@ const Item = (props: ItemProps) => {
 
       {isEditing && (
         <EditNotePopup
+          id={props.id}
           title={props.title}
           note={props.value}
           onClose={() => setIsEditing(false)}

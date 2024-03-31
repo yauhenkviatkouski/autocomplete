@@ -6,7 +6,7 @@ const useOutsideClick = (ref: RefObject<HTMLElement>, callback: () => void) => {
     (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         e.preventDefault();
-        callback();
+        // callback();
       }
     },
     [callback, ref]

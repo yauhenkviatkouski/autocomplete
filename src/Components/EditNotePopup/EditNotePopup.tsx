@@ -3,17 +3,19 @@ import { Button } from "../Shared";
 import style from "./style.module.scss";
 import { ChangeEvent } from "preact/compat";
 import { Modal } from "../Modal";
+import { useGetStorageContext } from "../StorageContext";
 
 interface EditNotePopupProps {
+  onClose: () => void;
+  id?: string;
   title?: string;
   note?: string;
-  onClose: () => void;
-  onSave?: (title: string, note: string) => void;
 }
 
 const EditNotePopup = (props: EditNotePopupProps) => {
-  const [title, setTitle] = useState(props.title);
-  const [note, setNote] = useState(props.note);
+  const [title, setTitle] = useState(props.title || "");
+  const [note, setNote] = useState(props.note || "");
+  const { storage, items } = useGetStorageContext();
 
   const handleChangeText = (e: ChangeEvent<HTMLInputElement, Event>) => {
     setTitle((e.target as HTMLInputElement).value);
@@ -23,9 +25,26 @@ const EditNotePopup = (props: EditNotePopupProps) => {
     setNote((e.target as HTMLTextAreaElement).value);
   };
 
+  const onSave = () => {
+    if (props.id) {
+      storage.updateItem({
+        id: props.id,
+        title,
+        value: note,
+      });
+    } else {
+      storage.addItem({
+        title,
+        value: note,
+        position: items.length,
+      });
+    }
+    props.onClose();
+  };
+
   return (
     <Modal onClose={props.onClose}>
-      <form className={style.edit_note_popup} onSubmit={() => console.log(e)}>
+      <form className={style.edit_note_popup} onSubmit={(e) => console.log(e)}>
         <input type="text" value={title} onChange={handleChangeText} />
         <textarea
           name=""
@@ -35,7 +54,7 @@ const EditNotePopup = (props: EditNotePopupProps) => {
           value={note}
           onChange={handleChangeTextarea}
         ></textarea>
-        <Button type="submit">Save</Button>
+        <Button onClick={onSave}>Save</Button>
       </form>
     </Modal>
   );

@@ -21,7 +21,7 @@ const List = () => {
     items: draggableItems,
   } = useDragAndDrop({
     initialItems: sortedList,
-    onDrop: storage.setItems,
+    onDrop: (items) => storage.setItems(items),
   });
 
   return (
@@ -35,6 +35,7 @@ const List = () => {
           onDrop={handleDrop}
         >
           <Item
+            id={item.id}
             title={item.title}
             value={item.value}
             position={item.position}
