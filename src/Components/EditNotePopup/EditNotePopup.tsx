@@ -1,9 +1,9 @@
-import { useState } from "preact/hooks";
-import { Button } from "../Shared";
-import style from "./style.module.scss";
-import { ChangeEvent } from "preact/compat";
-import { Modal } from "../Modal";
-import { useGetStorageContext } from "../StorageContext";
+import { useState } from 'preact/hooks';
+import { Button } from '../Shared';
+import style from './style.module.scss';
+import { ChangeEvent } from 'preact/compat';
+import { Modal } from '../Modal';
+import { useGetStorageContext } from '../StorageContext';
 
 interface EditNotePopupProps {
   onClose: () => void;
@@ -13,8 +13,8 @@ interface EditNotePopupProps {
 }
 
 const EditNotePopup = (props: EditNotePopupProps) => {
-  const [title, setTitle] = useState(props.title || "");
-  const [note, setNote] = useState(props.note || "");
+  const [title, setTitle] = useState(props.title || '');
+  const [note, setNote] = useState(props.note || '');
   const { storage, items } = useGetStorageContext();
 
   const handleChangeText = (e: ChangeEvent<HTMLInputElement, Event>) => {

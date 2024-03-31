@@ -1,7 +1,7 @@
-import { generateUniqueId } from "../../helpers";
-import { Item } from "../../types";
-import { CHROME_STORAGE_KEY } from "../../variables";
-import { AbstractStorage } from "../AbstractStorage/AbstractStorage";
+import { generateUniqueId } from '../../helpers';
+import { Item } from '../../types';
+import { CHROME_STORAGE_KEY } from '../../variables';
+import { AbstractStorage } from '../AbstractStorage/AbstractStorage';
 
 export class LocalStorage extends AbstractStorage {
   private onUpdateItems: (items: Array<Item>) => void;
@@ -16,7 +16,7 @@ export class LocalStorage extends AbstractStorage {
       const serializedItems = JSON.stringify(items);
       localStorage.setItem(CHROME_STORAGE_KEY, serializedItems);
       this.onUpdateItems(items);
-      console.log("Items are set in localStorage.", await this.getItems());
+      console.log('Items are set in localStorage.', await this.getItems());
     } catch (e) {
       throw new TypeError(`Error during saving Items: ${e}`);
     }
@@ -35,10 +35,10 @@ export class LocalStorage extends AbstractStorage {
     }
   }
 
-  async updateItem(partialItem: Omit<Item, "position">): Promise<void> {
+  async updateItem(partialItem: Omit<Item, 'position'>): Promise<void> {
     const items = await this.getItems();
     if (!items) {
-      throw new Error("No items found in localStorage");
+      throw new Error('No items found in localStorage');
     }
 
     const updatedItems = items.map((existingItem) =>
@@ -49,7 +49,7 @@ export class LocalStorage extends AbstractStorage {
     await this.setItems(updatedItems);
   }
 
-  async addItem(partialItem: Omit<Item, "id">): Promise<Item> {
+  async addItem(partialItem: Omit<Item, 'id'>): Promise<Item> {
     const items = (await this.getItems()) || [];
     const uniqueId = generateUniqueId(items);
     const item: Item = {

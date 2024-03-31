@@ -1,9 +1,9 @@
-import { createContext } from "preact/compat";
-import { useState, useEffect, useContext } from "preact/hooks";
-import { ChromeStorage } from "../../services/ChromeStorage";
-import { LocalStorage } from "../../services/LocalStorage";
-import { Item } from "../../types";
-import { listFixture } from "../../fixtures/listFixture";
+import { createContext } from 'preact/compat';
+import { useState, useEffect, useContext } from 'preact/hooks';
+import { ChromeStorage } from '../../services/ChromeStorage';
+import { LocalStorage } from '../../services/LocalStorage';
+import { Item } from '../../types';
+import { listFixture } from '../../fixtures/listFixture';
 
 type StorageContextType = {
   items: Item[];
@@ -39,7 +39,7 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
 export const useGetStorageContext = () => {
   const context = useContext(StorageContext);
   if (!context) {
-    throw new Error("useGetStorageContext must be used within a StorageProvider");
+    throw new Error('useGetStorageContext must be used within a StorageProvider');
   }
   return context;
 };

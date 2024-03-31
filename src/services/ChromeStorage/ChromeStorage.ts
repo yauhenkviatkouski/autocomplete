@@ -1,7 +1,7 @@
-import { generateUniqueId } from "../../helpers";
-import { Item } from "../../types";
-import { CHROME_STORAGE_KEY } from "../../variables";
-import { AbstractStorage } from "../AbstractStorage/AbstractStorage";
+import { generateUniqueId } from '../../helpers';
+import { Item } from '../../types';
+import { CHROME_STORAGE_KEY } from '../../variables';
+import { AbstractStorage } from '../AbstractStorage/AbstractStorage';
 
 export class ChromeStorage extends AbstractStorage {
   private onUpdateItems: (items: Array<Item>) => void;
@@ -20,7 +20,7 @@ export class ChromeStorage extends AbstractStorage {
     try {
       const serializedItems = JSON.stringify(items);
       await chrome.storage.sync.set({ [CHROME_STORAGE_KEY]: serializedItems });
-      console.log("Items are set in storage.", await this.getItems());
+      console.log('Items are set in storage.', await this.getItems());
     } catch (e) {
       throw new TypeError(`Items cannot be serialized to JSON: ${e}`);
     }
@@ -40,10 +40,10 @@ export class ChromeStorage extends AbstractStorage {
     }
   }
 
-  async updateItem(partialItem: Omit<Item, "position">): Promise<void> {
+  async updateItem(partialItem: Omit<Item, 'position'>): Promise<void> {
     const items = await this.getItems();
     if (!items) {
-      throw new Error("No items found in storage");
+      throw new Error('No items found in storage');
     }
 
     const updatedItems = items.map((existingItem) =>
@@ -54,7 +54,7 @@ export class ChromeStorage extends AbstractStorage {
     await this.setItems(updatedItems);
   }
 
-  async addItem(partialItem: Omit<Item, "id">): Promise<Item> {
+  async addItem(partialItem: Omit<Item, 'id'>): Promise<Item> {
     const items = (await this.getItems()) || [];
     const uniqueId = generateUniqueId(items);
     const item: Item = {

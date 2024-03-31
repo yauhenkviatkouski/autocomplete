@@ -8,7 +8,7 @@ const CloseIcon = () => (
     width="122.878px"
     height="122.88px"
     viewBox="0 0 122.878 122.88"
-    enable-background="new 0 0 122.878 122.88"
+    enableBackground="new 0 0 122.878 122.88"
   >
     <g>
       <path

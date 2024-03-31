@@ -1,1 +1,1 @@
-export { default as DevelopmentPage } from "./DevelopmentPage";
+export { default as DevelopmentPage } from './DevelopmentPage';

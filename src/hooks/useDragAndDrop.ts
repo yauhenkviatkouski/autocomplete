@@ -1,5 +1,5 @@
-import { Item } from "../types";
-import { useState, useCallback, useEffect } from "preact/hooks";
+import { Item } from '../types';
+import { useState, useCallback, useEffect } from 'preact/hooks';
 
 type UseDragAndDropProps = {
   initialItems: Array<Item>;
@@ -14,7 +14,7 @@ export const useDragAndDrop = ({ initialItems, onDrop }: UseDragAndDropProps) =>
   }, [initialItems]);
 
   const handleDragStart = useCallback((e: DragEvent, index: number): void => {
-    e.dataTransfer?.setData("itemIndex", index.toString());
+    e.dataTransfer?.setData('itemIndex', index.toString());
     setDraggedItemIndex(index);
   }, []);
 

@@ -27,6 +27,7 @@
     "vite": "^4.3.2"
   },
   "prettier": {
-    "printWidth": 90
+    "printWidth": 90,
+    "singleQuote": true
   }
 }

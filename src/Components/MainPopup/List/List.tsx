@@ -1,9 +1,9 @@
-import { Item } from "./Item";
-import { useDragAndDrop } from "../../../hooks/useDragAndDrop";
+import { Item } from './Item';
+import { useDragAndDrop } from '../../../hooks/useDragAndDrop';
 
-import style from "./style.module.scss";
-import { useMemo } from "preact/hooks";
-import { useGetStorageContext } from "../../StorageContext";
+import style from './style.module.scss';
+import { useMemo } from 'preact/hooks';
+import { useGetStorageContext } from '../../StorageContext';
 
 const List = () => {
   const { items, storage } = useGetStorageContext();

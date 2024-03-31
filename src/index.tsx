@@ -1,20 +1,20 @@
-import { render } from "preact";
-import { PopupButton } from "./Components/PopupButton";
-import { DevelopmentPage } from "./Components/DevelopmentPage";
+import { render } from 'preact';
+import { PopupButton } from './Components/PopupButton';
+import { DevelopmentPage } from './Components/DevelopmentPage';
 import {
   CHROME_PANEL_CONTAINER_ID,
   LOCALHOST,
   POPUP_BUTTON_CONTAINER_ID,
-} from "./variables";
+} from './variables';
 
-import style from "./style.module.scss";
+import style from './style.module.scss';
 
 const renderPopupButton = () => {
-  const textarea = document.getElementById("prompt-textarea");
+  const textarea = document.getElementById('prompt-textarea');
 
   if (textarea) {
-    const buttonContainer = document.createElement("div");
-    buttonContainer.className = style["popup-container"];
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = style['popup-container'];
     buttonContainer.id = POPUP_BUTTON_CONTAINER_ID;
     textarea.parentElement.insertBefore(buttonContainer, textarea);
     render(<PopupButton />, buttonContainer);

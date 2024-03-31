@@ -1,13 +1,13 @@
-import { ComponentChildren } from "preact";
-import { createPortal } from "preact/compat";
-import { useRef } from "preact/hooks";
-import useKeyHandler from "../../hooks/useKeyHandler";
-import useOutsideClick from "../../hooks/useOutsideClick";
-import { POPUP_BUTTON_CONTAINER_ID } from "../../variables";
+import { ComponentChildren } from 'preact';
+import { createPortal } from 'preact/compat';
+import { useRef } from 'preact/hooks';
+import useKeyHandler from '../../hooks/useKeyHandler';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import { POPUP_BUTTON_CONTAINER_ID } from '../../variables';
 
-import style from "./style.module.scss";
-import { Button } from "../Shared";
-import CloseIcon from "../Icons/CloseIcon";
+import style from './style.module.scss';
+import { Button } from '../Shared';
+import CloseIcon from '../Icons/CloseIcon';
 
 type ModalProps = {
   onClose: () => void;
@@ -18,7 +18,7 @@ const Modal = (props: ModalProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useOutsideClick(ref, props.onClose);
-  useKeyHandler("Escape", props.onClose);
+  useKeyHandler('Escape', props.onClose);
 
   return createPortal(
     <div ref={ref} className={style.modal}>

@@ -1,1 +1,1 @@
-export * from "./EditNotePopup";
+export * from './EditNotePopup';

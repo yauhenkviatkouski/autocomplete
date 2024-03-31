@@ -1,1 +1,1 @@
-export * from "./AbstractStorage";
+export * from './AbstractStorage';

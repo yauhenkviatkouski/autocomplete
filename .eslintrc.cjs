@@ -29,7 +29,7 @@ module.exports = {
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
+    quotes: ["error", "single"],
     semi: ["error", "always"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-uses-react": "off",

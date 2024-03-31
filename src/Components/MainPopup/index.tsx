@@ -1,1 +1,1 @@
-export { default as MainPopup } from "./MainPopup";
+export { default as MainPopup } from './MainPopup';

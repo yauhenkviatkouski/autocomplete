@@ -1,10 +1,10 @@
-import classNames from "classnames";
-import style from "./style.module.scss";
-import { Button } from "../../../Shared";
-import EditIcon from "../../../Icons/EditIcon";
-import TrashIcon from "../../../Icons/TrashIcon";
-import { useState } from "preact/hooks";
-import EditNotePopup from "../../../EditNotePopup/EditNotePopup";
+import classNames from 'classnames';
+import style from './style.module.scss';
+import { Button } from '../../../Shared';
+import EditIcon from '../../../Icons/EditIcon';
+import TrashIcon from '../../../Icons/TrashIcon';
+import { useState } from 'preact/hooks';
+import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
 
 type ItemProps = {
   id: string;
@@ -18,7 +18,7 @@ const Item = (props: ItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const onClick = () => {
-    console.log("clicked", props.title);
+    console.log('clicked', props.title);
   };
   return (
     <div

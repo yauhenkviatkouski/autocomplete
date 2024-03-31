@@ -1,5 +1,5 @@
-import { RefObject } from "preact";
-import { useCallback, useEffect } from "preact/hooks";
+import { RefObject } from 'preact';
+import { useCallback, useEffect } from 'preact/hooks';
 
 const useOutsideClick = (ref: RefObject<HTMLElement>, callback: () => void) => {
   const handleClick = useCallback(
@@ -13,9 +13,9 @@ const useOutsideClick = (ref: RefObject<HTMLElement>, callback: () => void) => {
   );
 
   useEffect(() => {
-    document.addEventListener("click", handleClick);
+    document.addEventListener('click', handleClick);
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener('click', handleClick);
     };
   }, [handleClick, ref]);
 };
