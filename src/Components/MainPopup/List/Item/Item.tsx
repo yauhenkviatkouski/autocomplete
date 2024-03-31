@@ -5,6 +5,7 @@ import EditIcon from '../../../Icons/EditIcon';
 import TrashIcon from '../../../Icons/TrashIcon';
 import { useState } from 'preact/hooks';
 import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
+import { useGetStorageContext } from '../../../StorageContext';
 
 type ItemProps = {
   id: string;
@@ -16,10 +17,16 @@ type ItemProps = {
 
 const Item = (props: ItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  const { storage } = useGetStorageContext();
 
   const onClick = () => {
-    console.log('clicked', props.title);
+    console.log('clicked item', props.title);
   };
+
+  const onDelete = () => {
+    storage.removeItem(props.id);
+  };
+
   return (
     <div
       className={classNames(style.item, {
@@ -28,12 +35,12 @@ const Item = (props: ItemProps) => {
     >
       <div>{props.position}</div>
       <button onClick={onClick} className={style.item__title}>
-        {props.title}
+        {props.position + '__' + props.title}
       </button>
       <Button onClick={() => setIsEditing(true)} type="icon">
         <EditIcon />
       </Button>
-      <Button type="icon">
+      <Button onClick={onDelete} type="icon">
         <TrashIcon />
       </Button>
 
