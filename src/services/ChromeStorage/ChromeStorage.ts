@@ -11,8 +11,14 @@ export class ChromeStorage extends AbstractStorage {
     this.onUpdateItems = onUpdateItems;
 
     chrome.storage.sync.onChanged.addListener((changes) => {
-      const items = (changes[CHROME_STORAGE_KEY]?.newValue as Item[]) || [];
-      this.onUpdateItems(items);
+      const newStoreValue = changes[CHROME_STORAGE_KEY]?.newValue;
+      try {
+        const items = JSON.parse(newStoreValue) || [];
+        this.onUpdateItems(items);
+      } catch (e) {
+        console.error('Error parsing JSON:', e);
+        console.log('NewValue:', newStoreValue);
+      }
     });
   }
 

@@ -35,7 +35,7 @@ const Item = (props: ItemProps) => {
     >
       <div>{props.position}</div>
       <button onClick={onClick} className={style.item__title}>
-        {props.position + '__' + props.title}
+        {props.title}
       </button>
       <Button onClick={() => setIsEditing(true)} type="icon">
         <EditIcon />
