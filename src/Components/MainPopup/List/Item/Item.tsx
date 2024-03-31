@@ -21,6 +21,9 @@ const Item = (props: ItemProps) => {
 
   const onClick = () => {
     console.log('clicked item', props.title);
+    const textArea = document.getElementById('prompt-textarea') as HTMLTextAreaElement;
+    textArea.value = props.value + '\n';
+    textArea.focus();
   };
 
   const onDelete = () => {

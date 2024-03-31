@@ -16,7 +16,7 @@ const renderPopupButton = () => {
     const buttonContainer = document.createElement('div');
     buttonContainer.className = style['popup-container'];
     buttonContainer.id = POPUP_BUTTON_CONTAINER_ID;
-    textarea.parentElement.insertBefore(buttonContainer, textarea);
+    textarea.parentElement?.insertBefore(buttonContainer, textarea);
     render(<PopupButton />, buttonContainer);
   }
 };
