@@ -3,9 +3,9 @@ import { PlusIcon } from '../Icons';
 import { MainPopup } from '../MainPopup';
 import { Modal } from '../Modal';
 import { Button } from '../Shared';
-import style from './style.module.scss';
 import classNames from 'classnames';
 import { StorageProvider } from '../StorageContext';
+import style from './PopupButton.module.scss';
 
 const PopupButton = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);

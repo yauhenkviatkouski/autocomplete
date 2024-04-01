@@ -29,12 +29,12 @@ const EditNotePopup = (props: EditNotePopupProps) => {
     if (props.id) {
       storage.updateItem({
         id: props.id,
-        title,
+        title: title || note,
         value: note,
       });
     } else {
       storage.addItem({
-        title,
+        title: title || note,
         value: note,
         position: items.length,
       });
@@ -44,18 +44,23 @@ const EditNotePopup = (props: EditNotePopupProps) => {
 
   return (
     <Modal onClose={props.onClose}>
-      <form className={style.edit_note_popup} onSubmit={(e) => console.log(e)}>
-        <input type="text" value={title} onChange={handleChangeText} />
+      <div className={style.edit_note_popup}>
+        <input
+          placeholder="Title"
+          type="text"
+          value={title}
+          onChange={handleChangeText}
+        />
         <textarea
-          name=""
-          id=""
-          cols={30}
+          placeholder="Prompt"
           rows={10}
           value={note}
           onChange={handleChangeTextarea}
         ></textarea>
-        <Button onClick={onSave}>Save</Button>
-      </form>
+        <Button disabled={!note} onClick={onSave}>
+          Save
+        </Button>
+      </div>
     </Modal>
   );
 };

@@ -1,8 +1,8 @@
 import { useState } from 'preact/hooks';
 import { Button } from '../Shared';
 import { List } from './List';
-import style from './style.module.scss';
 import EditNotePopup from '../EditNotePopup/EditNotePopup';
+import style from './MainPopup.module.scss';
 
 const MainPopup = () => {
   const [isEditing, setIsEditing] = useState(false);

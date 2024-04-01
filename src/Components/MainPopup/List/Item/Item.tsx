@@ -1,11 +1,11 @@
 import classNames from 'classnames';
-import style from './style.module.scss';
 import { Button } from '../../../Shared';
 import EditIcon from '../../../Icons/EditIcon';
 import TrashIcon from '../../../Icons/TrashIcon';
 import { useState } from 'preact/hooks';
 import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
 import { useGetStorageContext } from '../../../StorageContext';
+import style from './Item.module.scss';
 
 type ItemProps = {
   id: string;
@@ -36,8 +36,8 @@ const Item = (props: ItemProps) => {
         [style.item_dragging]: props.isDragging,
       })}
     >
-      <div>{props.position}</div>
-      <button onClick={onClick} className={style.item__title}>
+      <div className={style.item__position}>{props.position}</div>
+      <button title={props.title} onClick={onClick} className={style.item__title}>
         {props.title}
       </button>
       <Button onClick={() => setIsEditing(true)} type="icon">

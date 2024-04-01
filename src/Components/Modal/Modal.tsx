@@ -5,7 +5,7 @@ import useKeyHandler from '../../hooks/useKeyHandler';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { POPUP_BUTTON_CONTAINER_ID } from '../../variables';
 
-import style from './style.module.scss';
+import style from './Modal.module.scss';
 import { Button } from '../Shared';
 import CloseIcon from '../Icons/CloseIcon';
 

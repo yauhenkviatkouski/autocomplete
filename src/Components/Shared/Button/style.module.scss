@@ -1,4 +1,4 @@
-@import "theme";
+@import 'theme';
 
 .button {
   min-width: baseSize(6);
@@ -13,8 +13,7 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
-    sans-serif;
+  font-family: Inter, -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
   font-weight: 600;
   letter-spacing: normal;
   outline: none;
@@ -31,7 +30,13 @@
   vertical-align: top;
   white-space: nowrap;
 
-  &:hover,
+  &:disabled {
+    background-color: #767a7c;
+    color: #ecf0f1;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled),
   &:focus-visible {
     background-color: #166336;
     opacity: 1;

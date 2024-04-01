@@ -1,4 +1,4 @@
-@import "theme";
+@import 'theme';
 
 .item {
   display: flex;
@@ -9,6 +9,12 @@
 
 .item_dragging {
   background-color: rgb(252 253 249 / 43%);
+}
+
+.item__position {
+  min-width: baseSize(4);
+  font-size: small;
+  text-align: right;
 }
 
 .item__title {
