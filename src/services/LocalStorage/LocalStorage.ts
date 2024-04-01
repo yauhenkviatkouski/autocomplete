@@ -1,4 +1,4 @@
-import { generateUniqueId } from '../../helpers';
+import { generateUniqueId, sortItemsAndRemoveGaps } from '../../helpers';
 import { Item } from '../../types';
 import { CHROME_STORAGE_KEY } from '../../variables';
 import { AbstractStorage } from '../AbstractStorage/AbstractStorage';
@@ -13,9 +13,10 @@ export class LocalStorage extends AbstractStorage {
 
   async setItems(items: Item[]): Promise<void> {
     try {
-      const serializedItems = JSON.stringify(items);
+      const sortedItems = sortItemsAndRemoveGaps(items);
+      const serializedItems = JSON.stringify(sortedItems);
       localStorage.setItem(CHROME_STORAGE_KEY, serializedItems);
-      this.onUpdateItems(items);
+      this.onUpdateItems(sortedItems);
       console.log('Items are set in localStorage.', await this.getItems());
     } catch (e) {
       throw new TypeError(`Error during saving Items: ${e}`);

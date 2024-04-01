@@ -8,9 +8,10 @@ import {
 } from './variables';
 
 import style from './style.module.scss';
+import { getTextAreaElement } from './helpers';
 
 const renderPopupButton = () => {
-  const textarea = document.getElementById('prompt-textarea');
+  const textarea = getTextAreaElement();
 
   if (textarea) {
     const buttonContainer = document.createElement('div');

@@ -18,3 +18,6 @@ export const sortItemsAndRemoveGaps = (items: Item[]) => {
     }));
   return sortedItems;
 };
+
+export const getTextAreaElement = () =>
+  document.getElementById('prompt-textarea') || document.getElementById('searchbox');

@@ -29,7 +29,7 @@ export const useDragAndDrop = ({ initialItems, onDrop }: UseDragAndDropProps) =>
         setItems(
           copiedItems.map((item: Item, index: number) => ({
             ...item,
-            position: index,
+            position: index + 1,
           }))
         );
         setDraggedItemIndex(index);

@@ -1,4 +1,4 @@
-import { generateUniqueId } from '../../helpers';
+import { generateUniqueId, sortItemsAndRemoveGaps } from '../../helpers';
 import { Item } from '../../types';
 import { CHROME_STORAGE_KEY } from '../../variables';
 import { AbstractStorage } from '../AbstractStorage/AbstractStorage';
@@ -24,7 +24,8 @@ export class ChromeStorage extends AbstractStorage {
 
   async setItems(items: Item[]): Promise<void> {
     try {
-      const serializedItems = JSON.stringify(items);
+      const sortedItems = sortItemsAndRemoveGaps(items);
+      const serializedItems = JSON.stringify(sortedItems);
       await chrome.storage.sync.set({ [CHROME_STORAGE_KEY]: serializedItems });
       console.log('Items are set in storage.', await this.getItems());
     } catch (e) {
