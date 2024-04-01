@@ -1,4 +1,15 @@
-@import "theme";
+@import 'theme';
+
+.full_screen_container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(48, 48, 48, 0.74);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
 
 .modal {
   position: absolute;

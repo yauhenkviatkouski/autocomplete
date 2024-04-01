@@ -1,6 +1,7 @@
 @import 'theme';
 
 .item {
+  margin: baseSize();
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
