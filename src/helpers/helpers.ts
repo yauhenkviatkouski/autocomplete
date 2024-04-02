@@ -21,3 +21,23 @@ export const sortItemsAndRemoveGaps = (items: Item[]) => {
 
 export const getTextAreaElement = () =>
   document.getElementById('prompt-textarea') || document.getElementById('searchbox');
+
+export const handleShadowRoots = (element: Element) => {
+  if (element.shadowRoot) {
+    console.log('shadow-root');
+    const textarea = element.shadowRoot.querySelector('textarea');
+    if (textarea) {
+      console.log(textarea);
+    }
+
+    const shadowElements = element.shadowRoot.querySelectorAll('*');
+    shadowElements.forEach((shadowElement) => {
+      handleShadowRoots(shadowElement);
+    });
+  }
+};
+
+// const allElements = document.querySelectorAll('*');
+// allElements.forEach((element) => {
+//   handleShadowRoots(element);
+// });
