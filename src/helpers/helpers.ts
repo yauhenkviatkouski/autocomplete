@@ -19,25 +19,32 @@ export const sortItemsAndRemoveGaps = (items: Item[]) => {
   return sortedItems;
 };
 
-export const getTextAreaElement = () =>
-  document.getElementById('prompt-textarea') || document.getElementById('searchbox');
-
-export const handleShadowRoots = (element: Element) => {
-  if (element.shadowRoot) {
-    console.log('shadow-root');
-    const textarea = element.shadowRoot.querySelector('textarea');
-    if (textarea) {
-      console.log(textarea);
+export const getElementBySelector = (selector: string) => {
+  console.log('CALLED');
+  function findInShadowRoots(element: Element) {
+    let foundElement: Element | null = null;
+    if (element.shadowRoot) {
+      foundElement = element.shadowRoot.querySelector(selector);
+      if (foundElement) {
+        return foundElement;
+      }
+      const shadowElements = element.shadowRoot.querySelectorAll('*');
+      shadowElements.forEach((shadowElement) => {
+        foundElement = findInShadowRoots(shadowElement) || foundElement;
+      });
     }
-
-    const shadowElements = element.shadowRoot.querySelectorAll('*');
-    shadowElements.forEach((shadowElement) => {
-      handleShadowRoots(shadowElement);
-    });
+    return foundElement;
   }
-};
 
-// const allElements = document.querySelectorAll('*');
-// allElements.forEach((element) => {
-//   handleShadowRoots(element);
-// });
+  let foundElement = document.querySelector(selector);
+  if (foundElement) {
+    return foundElement;
+  }
+
+  const allElements = document.querySelectorAll('*');
+  allElements.forEach((element) => {
+    foundElement = findInShadowRoots(element) || foundElement;
+  });
+
+  return foundElement;
+};
