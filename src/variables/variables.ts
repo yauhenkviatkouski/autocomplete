@@ -9,5 +9,6 @@ export const SETTINGS = {
     '[data-qa="message"] textarea',
     'textarea#prompt-textarea',
     'textarea#searchbox',
+    'rich-textarea.text-input-field_textarea',
   ],
 };

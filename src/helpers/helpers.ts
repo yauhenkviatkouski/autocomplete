@@ -48,3 +48,12 @@ export const getElementBySelector = (selector: string) => {
 
   return foundElement;
 };
+
+export const getButtonContainer = (selectors: string[]) => {
+  for (const selector of selectors) {
+    const container = getElementBySelector(selector);
+    if (container) {
+      return container;
+    }
+  }
+};

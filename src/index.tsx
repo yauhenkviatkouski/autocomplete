@@ -5,13 +5,14 @@ import {
   CHROME_PANEL_CONTAINER_ID,
   LOCALHOST,
   POPUP_BUTTON_CONTAINER_ID,
+  SETTINGS,
 } from './variables';
 
 import style from './style.module.scss';
-import { getElementBySelector } from './helpers';
+import { getButtonContainer } from './helpers';
 
 const renderPopupButton = () => {
-  const textarea = getElementBySelector('#prompt-textarea');
+  const textarea = getButtonContainer(SETTINGS.DEFAULT_SELECTORS);
 
   if (textarea) {
     const buttonContainer = document.createElement('div');
