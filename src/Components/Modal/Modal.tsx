@@ -7,6 +7,7 @@ import { POPUP_BUTTON_CONTAINER_ID } from '../../variables';
 import style from './Modal.module.scss';
 import { Button } from '../Shared';
 import CloseIcon from '../Icons/CloseIcon';
+import { getElementBySelector } from '../../helpers';
 
 type ModalProps = {
   onClose: () => void;
@@ -30,7 +31,7 @@ const Modal = (props: ModalProps) => {
         {props.children}
       </div>
     </>,
-    document.getElementById(POPUP_BUTTON_CONTAINER_ID) as HTMLElement
+    getElementBySelector(`#${POPUP_BUTTON_CONTAINER_ID}`) as HTMLElement
   );
 };
 
