@@ -1,11 +1,11 @@
-@import "theme";
+@import 'theme';
 
 .popup-button-container {
   position: absolute;
   bottom: baseSize(4);
 
   > button {
-    opacity: 40%;
+    opacity: 20%;
   }
 
   &_visible {
