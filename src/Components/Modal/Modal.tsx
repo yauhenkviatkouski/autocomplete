@@ -2,12 +2,11 @@ import { ComponentChildren } from 'preact';
 import { createPortal } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import useKeyHandler from '../../hooks/useKeyHandler';
-import { POPUP_BUTTON_CONTAINER_ID } from '../../variables';
 
 import style from './Modal.module.scss';
 import { Button } from '../Shared';
 import CloseIcon from '../Icons/CloseIcon';
-import { getElementBySelector } from '../../helpers';
+import { useGlobalContext } from '../../services/GlobalContext';
 
 type ModalProps = {
   onClose: () => void;
@@ -15,9 +14,14 @@ type ModalProps = {
 };
 
 const Modal = (props: ModalProps) => {
+  const { appContainerRef } = useGlobalContext();
   const ref = useRef<HTMLDivElement>(null);
 
   useKeyHandler('Escape', props.onClose);
+
+  if (!appContainerRef?.current) {
+    return null;
+  }
 
   return createPortal(
     <>
@@ -31,7 +35,7 @@ const Modal = (props: ModalProps) => {
         {props.children}
       </div>
     </>,
-    getElementBySelector(`#${POPUP_BUTTON_CONTAINER_ID}`) as HTMLElement
+    appContainerRef.current
   );
 };
 

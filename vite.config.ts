@@ -6,6 +6,11 @@ import manifestGenerator from './scripts/manifestGenerator';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [manifestGenerator(), preact()],
+  resolve: {
+    alias: {
+      '@mui/styled-engine': '@mui/styled-engine-sc',
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {

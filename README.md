@@ -5,3 +5,4 @@
 - [ ] DragDrop highlighting
 - [ ] manage inputs on different sites (put it in variables)
 - [ ] closing popup after adding prompt
+- [ ] rerender after unmount (eventListener?)

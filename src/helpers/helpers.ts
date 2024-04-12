@@ -1,4 +1,5 @@
 import { Item } from '../types';
+import { MAIN_CONTAINER_ID, SETTINGS } from '../variables';
 
 export const generateUniqueId = (existingItems: Item[] = []): string => {
   const usedIds = new Set(existingItems.map((item) => item.id));
@@ -49,7 +50,7 @@ export const getElementBySelector = (selector: string) => {
   return foundElement;
 };
 
-export const getButtonContainer = (selectors: string[]) => {
+export const getElementByListOfSelectors = (selectors: string[]) => {
   for (const selector of selectors) {
     const container = getElementBySelector(selector);
     if (container) {
@@ -57,3 +58,9 @@ export const getButtonContainer = (selectors: string[]) => {
     }
   }
 };
+
+export const getTextAreaForPrompt = () =>
+  getElementByListOfSelectors(SETTINGS.DEFAULT_TEXTAREA_SELECTORS) as Element;
+
+export const getMainContainer = () =>
+  getElementBySelector(`#${MAIN_CONTAINER_ID}`) as Element;

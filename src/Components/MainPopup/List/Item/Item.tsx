@@ -6,8 +6,7 @@ import { useState } from 'preact/hooks';
 import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
 import { useGetStorageContext } from '../../../StorageContext';
 import style from './Item.module.scss';
-import { getButtonContainer } from '../../../../helpers';
-import { SETTINGS } from '../../../../variables';
+import { getTextAreaForPrompt } from '../../../../helpers';
 
 type ItemProps = {
   id: string;
@@ -23,9 +22,7 @@ const Item = (props: ItemProps) => {
 
   const onClick = () => {
     console.log('clicked item', props.title);
-    const textArea = getButtonContainer(
-      SETTINGS.DEFAULT_SELECTORS
-    ) as HTMLTextAreaElement;
+    const textArea = getTextAreaForPrompt() as HTMLInputElement;
     console.log('🚀 > onClick > textArea:', textArea);
     textArea.value = props.value + '\n';
     textArea.focus();

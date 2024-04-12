@@ -1,25 +1,25 @@
 import { render } from 'preact';
-import { PopupButton } from './Components/PopupButton';
 import { DevelopmentPage } from './Components/DevelopmentPage';
-import {
-  CHROME_PANEL_CONTAINER_ID,
-  LOCALHOST,
-  POPUP_BUTTON_CONTAINER_ID,
-  SETTINGS,
-} from './variables';
 
-import style from './style.module.scss';
-import { getButtonContainer } from './helpers';
+import { CHROME_PANEL_CONTAINER_ID, LOCALHOST, MAIN_CONTAINER_ID } from './variables';
 
-const renderPopupButton = () => {
-  const textarea = getButtonContainer(SETTINGS.DEFAULT_SELECTORS);
+import App from './App';
+import { getTextAreaForPrompt } from './helpers';
+
+const renderMainContainer = () => {
+  const textarea = getTextAreaForPrompt();
+
+  // TODO render modal into&????????
 
   if (textarea) {
-    const buttonContainer = document.createElement('div');
-    buttonContainer.className = style['popup-container'];
-    buttonContainer.id = POPUP_BUTTON_CONTAINER_ID;
-    textarea.parentElement?.insertBefore(buttonContainer, textarea);
-    render(<PopupButton />, buttonContainer);
+    const mainContainer = document.createElement('div');
+    mainContainer.id = MAIN_CONTAINER_ID;
+    mainContainer.style.position = 'fixed';
+    mainContainer.style.height = '0';
+    // mainContainer.style.width = '0';
+
+    textarea.parentElement?.insertBefore(mainContainer, textarea);
+    render(<App targetStylesNode={mainContainer} />, mainContainer);
   }
 };
 
@@ -30,13 +30,13 @@ const renderApp = () => {
   );
 
   if (!chromeExtensionPanelContainer) {
-    renderPopupButton();
+    renderMainContainer();
     return;
   }
 
   if (isDevelopmentMode) {
     render(<DevelopmentPage />, chromeExtensionPanelContainer);
-    renderPopupButton();
+    renderMainContainer();
   } else {
     render(<p>Settings</p>, chromeExtensionPanelContainer);
   }
