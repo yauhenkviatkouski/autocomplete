@@ -2,22 +2,39 @@ import { useState } from 'preact/hooks';
 import { Button } from '../Shared';
 import { List } from './List';
 import EditNotePopup from '../EditNotePopup/EditNotePopup';
-import style from './MainPopup.module.scss';
+import styled from 'styled-components';
 
 const MainPopup = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
     <>
-      <main className={style.main_popup}>
+      <StyledMainPopup>
         <List />
-        <div className={style.main_popup__add_button_container}>
+        <StyledMainPopupAddButtonContainer>
           <Button onClick={() => setIsEditing(true)}>Add</Button>
-        </div>
-      </main>
+        </StyledMainPopupAddButtonContainer>
+      </StyledMainPopup>
       {isEditing && <EditNotePopup onClose={() => setIsEditing(false)} />}
     </>
   );
 };
 
 export default MainPopup;
+
+const StyledMainPopup = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledMainPopupAddButtonContainer = styled.div`
+  margin-top: 8px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    min-width: 56px;
+  }
+`;

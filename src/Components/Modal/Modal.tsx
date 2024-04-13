@@ -3,10 +3,10 @@ import { createPortal } from 'preact/compat';
 import { useRef } from 'preact/hooks';
 import useKeyHandler from '../../hooks/useKeyHandler';
 
-import style from './Modal.module.scss';
 import { Button } from '../Shared';
 import CloseIcon from '../Icons/CloseIcon';
 import { useGlobalContext } from '../../services/GlobalContext';
+import styled from 'styled-components';
 
 type ModalProps = {
   onClose: () => void;
@@ -25,18 +25,49 @@ const Modal = (props: ModalProps) => {
 
   return createPortal(
     <>
-      <div onClick={props.onClose} className={style.full_screen_container}></div>
-      <div ref={ref} className={style.modal}>
-        <div className={style.modal__header}>
+      <FullScreenContainer onClick={props.onClose}></FullScreenContainer>
+      <ModalContainer ref={ref}>
+        <ModalHeader>
           <Button onClick={props.onClose}>
             <CloseIcon />
           </Button>
-        </div>
+        </ModalHeader>
         {props.children}
-      </div>
+      </ModalContainer>
     </>,
     appContainerRef.current
   );
 };
 
 export default Modal;
+
+const FullScreenContainer = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(48, 48, 48, 0.74);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+`;
+
+const ModalContainer = styled.div`
+  position: absolute;
+  bottom: baseSize(14); // 56px
+  background-color: rgb(213, 221, 189);
+  padding: baseSize(2);
+  border: 1px solid gray;
+  border-radius: baseSize();
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: end;
+  margin-bottom: baseSize(2);
+
+  button {
+    width: baseSize(6);
+    height: baseSize(6);
+  }
+`;

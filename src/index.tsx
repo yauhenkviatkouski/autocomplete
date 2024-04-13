@@ -9,14 +9,12 @@ import { getTextAreaForPrompt } from './helpers';
 const renderMainContainer = () => {
   const textarea = getTextAreaForPrompt();
 
-  // TODO render modal into&????????
-
   if (textarea) {
     const mainContainer = document.createElement('div');
     mainContainer.id = MAIN_CONTAINER_ID;
     mainContainer.style.position = 'fixed';
     mainContainer.style.height = '0';
-    // mainContainer.style.width = '0';
+    mainContainer.style.width = '0';
 
     textarea.parentElement?.insertBefore(mainContainer, textarea);
     render(<App targetStylesNode={mainContainer} />, mainContainer);

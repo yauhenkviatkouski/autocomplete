@@ -1,7 +1,0 @@
-$base-size: 4px;
-
-$color-red: red;
-
-@function baseSize($n: 1) {
-  @return $base-size * $n;
-}

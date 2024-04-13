@@ -1,13 +1,17 @@
-import style from './DevelopmentPage.module.scss';
+import styled from 'styled-components';
 
 const DevelopmentPage = () => {
   return (
-    <main className={style.main}>
+    <StyledDevelopmentPage>
       <section>
         <textarea id="prompt-textarea" />
       </section>
-    </main>
+    </StyledDevelopmentPage>
   );
 };
 
 export default DevelopmentPage;
+
+const StyledDevelopmentPage = styled.div`
+  padding-top: 400px;
+`;

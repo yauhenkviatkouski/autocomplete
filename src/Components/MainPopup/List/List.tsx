@@ -1,9 +1,9 @@
 import { Item } from './Item';
 import { useDragAndDrop } from '../../../hooks/useDragAndDrop';
 import { useMemo } from 'preact/hooks';
-import { useGetStorageContext } from '../../StorageContext';
+import { useGetStorageContext } from '../../../services/StorageContext';
 
-import style from './List.module.scss';
+import styled from 'styled-components';
 
 const List = () => {
   const { items, storage } = useGetStorageContext();
@@ -25,7 +25,7 @@ const List = () => {
   });
 
   return (
-    <ul className={style.list}>
+    <StyledList>
       {draggableItems.map((item, index) => (
         <li
           key={item.id}
@@ -43,8 +43,14 @@ const List = () => {
           />
         </li>
       ))}
-    </ul>
+    </StyledList>
   );
 };
 
 export default List;
+
+export const StyledList = styled.ul`
+  padding: 1px 0 !important;
+  overflow: auto;
+  height: 160px;
+`;

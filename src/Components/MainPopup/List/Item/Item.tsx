@@ -1,12 +1,11 @@
-import classNames from 'classnames';
 import { Button } from '../../../Shared';
 import EditIcon from '../../../Icons/EditIcon';
 import TrashIcon from '../../../Icons/TrashIcon';
 import { useState } from 'preact/hooks';
 import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
-import { useGetStorageContext } from '../../../StorageContext';
-import style from './Item.module.scss';
+import { useGetStorageContext } from '../../../../services/StorageContext';
 import { getTextAreaForPrompt } from '../../../../helpers';
+import styled, { css } from 'styled-components';
 
 type ItemProps = {
   id: string;
@@ -33,15 +32,11 @@ const Item = (props: ItemProps) => {
   };
 
   return (
-    <div
-      className={classNames(style.item, {
-        [style.item_dragging]: props.isDragging,
-      })}
-    >
-      <div className={style.item__position}>{props.position}</div>
-      <button title={props.title} onClick={onClick} className={style.item__title}>
+    <ItemContainer>
+      <ItemPosition></ItemPosition>
+      <ItemTitle title={props.title} onClick={onClick}>
         {props.title}
-      </button>
+      </ItemTitle>
       <Button onClick={() => setIsEditing(true)} type="icon">
         <EditIcon />
       </Button>
@@ -57,8 +52,45 @@ const Item = (props: ItemProps) => {
           onClose={() => setIsEditing(false)}
         />
       )}
-    </div>
+    </ItemContainer>
   );
 };
 
 export default Item;
+
+const ItemContainer = styled.div<{ $isDragging?: boolean }>`
+  margin: 4px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 16px;
+  background-color: ${({ $isDragging }) =>
+    $isDragging ? 'rgba(252, 253, 249, 0.43)' : 'unset'};
+`;
+
+const ItemPosition = styled.div`
+  min-width: 16px;
+  font-size: small;
+  text-align: right;
+`;
+
+const ItemTitle = styled.button`
+  background: none;
+  box-shadow: none;
+  border: none;
+  text-align: start;
+  color: unset;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 4px;
+  border-radius: 4px;
+
+  &:hover,
+  &:focus-visible {
+    outline: 1px solid gray;
+    cursor: pointer;
+  }
+`;

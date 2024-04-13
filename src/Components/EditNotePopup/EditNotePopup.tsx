@@ -1,9 +1,9 @@
 import { useState } from 'preact/hooks';
 import { Button } from '../Shared';
-import style from './style.module.scss';
 import { ChangeEvent } from 'preact/compat';
 import { Modal } from '../Modal';
-import { useGetStorageContext } from '../StorageContext';
+import { useGetStorageContext } from '../../services/StorageContext';
+import styled from 'styled-components';
 
 interface EditNotePopupProps {
   onClose: () => void;
@@ -44,7 +44,7 @@ const EditNotePopup = (props: EditNotePopupProps) => {
 
   return (
     <Modal onClose={props.onClose}>
-      <div className={style.edit_note_popup}>
+      <StyledEditNotePopup>
         <input
           placeholder="Title"
           type="text"
@@ -60,9 +60,24 @@ const EditNotePopup = (props: EditNotePopupProps) => {
         <Button disabled={!note} onClick={onSave}>
           Save
         </Button>
-      </div>
+      </StyledEditNotePopup>
     </Modal>
   );
 };
 
 export default EditNotePopup;
+
+const StyledEditNotePopup = styled.div`
+  min-width: 250px;
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+
+  input,
+  textarea {
+    font-size: small;
+  }
+`;

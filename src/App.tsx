@@ -2,6 +2,7 @@ import { useRef } from 'preact/hooks';
 import styled, { StyleSheetManager } from 'styled-components';
 import { PopupButton } from './Components/PopupButton';
 import { AppContextProvider } from './services/GlobalContext';
+import { StorageProvider } from './services/StorageContext';
 
 type AppProps = { targetStylesNode: HTMLElement };
 
@@ -11,9 +12,11 @@ const App = ({ targetStylesNode }: AppProps) => {
   return (
     <StyleSheetManager target={targetStylesNode}>
       <AppContextProvider appContainerRef={appContainerRef}>
-        <AppContainer ref={appContainerRef}>
-          <PopupButton />
-        </AppContainer>
+        <StorageProvider>
+          <AppContainer ref={appContainerRef}>
+            <PopupButton />
+          </AppContainer>
+        </StorageProvider>
       </AppContextProvider>
     </StyleSheetManager>
   );
@@ -27,8 +30,8 @@ const AppContainer = styled.div`
   font-family: Helvetica, sans-serif;
 
   svg {
-    height: baseSize(4);
-    width: baseSize(4);
+    height: 16px;
+    width: 16px;
   }
 
   ul,

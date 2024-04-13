@@ -1,7 +1,7 @@
 import { createContext } from 'preact/compat';
 import { useState, useEffect, useContext } from 'preact/hooks';
-import { ChromeStorage } from '../../services/ChromeStorage';
-import { LocalStorage } from '../../services/LocalStorage';
+import { ChromeStorage } from '../ChromeStorage';
+import { LocalStorage } from '../LocalStorage';
 import { Item } from '../../types';
 import { listFixture } from '../../fixtures/listFixture';
 
