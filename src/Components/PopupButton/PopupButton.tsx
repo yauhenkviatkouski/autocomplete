@@ -1,12 +1,12 @@
-import { useState } from 'preact/hooks';
 import IconButton from '@mui/material/IconButton';
 import { MainPopup } from '../MainPopup';
 import { Modal } from '../Modal';
 import styled from 'styled-components';
 import InputIcon from '../Icons/InputIcon';
+import { useGetGlobalContext } from '../../services/GlobalContext';
 
 const PopupButton = () => {
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const { isPopupVisible, setIsPopupVisible } = useGetGlobalContext();
   return (
     <StyledContainer>
       {isPopupVisible && (

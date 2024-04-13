@@ -1,11 +1,12 @@
-import { Button } from '../../../Shared';
+import styled from 'styled-components';
+import IconButton from '@mui/material/IconButton';
 import EditIcon from '../../../Icons/EditIcon';
 import TrashIcon from '../../../Icons/TrashIcon';
 import { useState } from 'preact/hooks';
 import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
 import { useGetStorageContext } from '../../../../services/StorageContext';
 import { getTextAreaForPrompt } from '../../../../helpers';
-import styled, { css } from 'styled-components';
+import { useGetGlobalContext } from '../../../../services/GlobalContext';
 
 type ItemProps = {
   id: string;
@@ -18,6 +19,7 @@ type ItemProps = {
 const Item = (props: ItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const { storage } = useGetStorageContext();
+  const { setIsPopupVisible } = useGetGlobalContext();
 
   const onClick = () => {
     console.log('clicked item', props.title);
@@ -25,6 +27,7 @@ const Item = (props: ItemProps) => {
     console.log('🚀 > onClick > textArea:', textArea);
     textArea.value = props.value + '\n';
     textArea.focus();
+    setIsPopupVisible(false);
   };
 
   const onDelete = () => {
@@ -33,16 +36,16 @@ const Item = (props: ItemProps) => {
 
   return (
     <ItemContainer>
-      <ItemPosition></ItemPosition>
+      <ItemPosition>{props.position}</ItemPosition>
       <ItemTitle title={props.title} onClick={onClick}>
         {props.title}
       </ItemTitle>
-      <Button onClick={() => setIsEditing(true)} type="icon">
+      <IconButton onClick={() => setIsEditing(true)} type="icon">
         <EditIcon />
-      </Button>
-      <Button onClick={onDelete} type="icon">
+      </IconButton>
+      <IconButton onClick={onDelete} type="icon">
         <TrashIcon />
-      </Button>
+      </IconButton>
 
       {isEditing && (
         <EditNotePopup

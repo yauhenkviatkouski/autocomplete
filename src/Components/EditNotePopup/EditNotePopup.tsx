@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
-import { Button } from '../Shared';
 import { ChangeEvent } from 'preact/compat';
+import Button from '@mui/material/Button';
 import { Modal } from '../Modal';
 import { useGetStorageContext } from '../../services/StorageContext';
 import styled from 'styled-components';
@@ -57,7 +57,7 @@ const EditNotePopup = (props: EditNotePopupProps) => {
           value={note}
           onChange={handleChangeTextarea}
         ></textarea>
-        <Button disabled={!note} onClick={onSave}>
+        <Button color="success" disabled={!note} onClick={onSave}>
           Save
         </Button>
       </StyledEditNotePopup>

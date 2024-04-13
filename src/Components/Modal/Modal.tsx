@@ -1,11 +1,11 @@
 import { ComponentChildren } from 'preact';
 import { createPortal } from 'preact/compat';
 import { useRef } from 'preact/hooks';
+import IconButton from '@mui/material/IconButton';
 import useKeyHandler from '../../hooks/useKeyHandler';
 
-import { Button } from '../Shared';
 import CloseIcon from '../Icons/CloseIcon';
-import { useGlobalContext } from '../../services/GlobalContext';
+import { useGetGlobalContext } from '../../services/GlobalContext';
 import styled from 'styled-components';
 
 type ModalProps = {
@@ -14,7 +14,7 @@ type ModalProps = {
 };
 
 const Modal = (props: ModalProps) => {
-  const { appContainerRef } = useGlobalContext();
+  const { appContainerRef } = useGetGlobalContext();
   const ref = useRef<HTMLDivElement>(null);
 
   useKeyHandler('Escape', props.onClose);
@@ -28,9 +28,9 @@ const Modal = (props: ModalProps) => {
       <FullScreenContainer onClick={props.onClose}></FullScreenContainer>
       <ModalContainer ref={ref}>
         <ModalHeader>
-          <Button onClick={props.onClose}>
+          <IconButton color="error" onClick={props.onClose}>
             <CloseIcon />
-          </Button>
+          </IconButton>
         </ModalHeader>
         {props.children}
       </ModalContainer>
@@ -45,7 +45,6 @@ const FullScreenContainer = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  /* background: rgba(48, 48, 48, 0.74); */
   top: 0;
   left: 0;
   bottom: 0;
@@ -55,7 +54,7 @@ const FullScreenContainer = styled.div`
 const ModalContainer = styled.div`
   position: absolute;
   bottom: 56px;
-  background-color: rgb(213, 221, 189);
+  background-color: rgb(250, 255, 212);
   padding: 8px;
   border: 1px solid gray;
   border-radius: 4px;
