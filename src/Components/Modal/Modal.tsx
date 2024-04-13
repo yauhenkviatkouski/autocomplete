@@ -45,7 +45,7 @@ const FullScreenContainer = styled.div`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background: rgba(48, 48, 48, 0.74);
+  /* background: rgba(48, 48, 48, 0.74); */
   top: 0;
   left: 0;
   bottom: 0;
@@ -54,20 +54,20 @@ const FullScreenContainer = styled.div`
 
 const ModalContainer = styled.div`
   position: absolute;
-  bottom: baseSize(14); // 56px
+  bottom: 56px;
   background-color: rgb(213, 221, 189);
-  padding: baseSize(2);
+  padding: 8px;
   border: 1px solid gray;
-  border-radius: baseSize();
+  border-radius: 4px;
 `;
 
 const ModalHeader = styled.div`
   display: flex;
   justify-content: end;
-  margin-bottom: baseSize(2);
+  margin-bottom: 8px;
 
   button {
-    width: baseSize(6);
-    height: baseSize(6);
+    width: 24px;
+    height: 24px;
   }
 `;

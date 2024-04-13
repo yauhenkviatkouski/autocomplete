@@ -1,9 +1,9 @@
 import { useState } from 'preact/hooks';
-import { PlusIcon } from '../Icons';
+import IconButton from '@mui/material/IconButton';
 import { MainPopup } from '../MainPopup';
 import { Modal } from '../Modal';
-import { Button } from '../Shared';
 import styled from 'styled-components';
+import InputIcon from '../Icons/InputIcon';
 
 const PopupButton = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -14,9 +14,14 @@ const PopupButton = () => {
           <MainPopup />
         </Modal>
       )}
-      <Button type="icon" aria-label="Add text" onClick={() => setIsPopupVisible(true)}>
-        <PlusIcon />
-      </Button>
+      <StyledButton
+        isTransparent={!isPopupVisible}
+        color="success"
+        aria-label="Add text"
+        onClick={() => setIsPopupVisible(true)}
+      >
+        <InputIcon />
+      </StyledButton>
     </StyledContainer>
   );
 };
@@ -25,15 +30,9 @@ export default PopupButton;
 
 const StyledContainer = styled.div`
   position: absolute;
-  bottom: baseSize(4);
+  bottom: 16px;
+`;
 
-  > button {
-    opacity: 20%;
-  }
-
-  &_visible {
-    > button {
-      opacity: 1;
-    }
-  }
+const StyledButton = styled(IconButton)<{ isTransparent: boolean }>`
+  opacity: ${({ isTransparent }) => (isTransparent ? '0.7' : 1)};
 `;

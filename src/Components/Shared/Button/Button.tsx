@@ -21,12 +21,12 @@ const Button = (props: ButtonProps) => (
 export default Button;
 
 const StyledButton = styled.button`
-  min-width: baseSize(6);
-  min-height: baseSize(6);
+  min-width: 24px;
+  min-height: 24px;
   appearance: none;
   backface-visibility: hidden;
   background-color: #27ae60;
-  border-radius: baseSize();
+  border-radius: 4px;
   border-style: none;
   box-shadow: rgba(39, 174, 96, 0.15) 0 4px 9px;
   box-sizing: border-box;
@@ -38,7 +38,7 @@ const StyledButton = styled.button`
   letter-spacing: normal;
   outline: none;
   overflow: hidden;
-  padding: baseSize();
+  padding: 4px;
   position: relative;
   text-align: center;
   text-decoration: none;
