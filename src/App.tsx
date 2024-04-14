@@ -9,11 +9,16 @@ type AppProps = { targetStylesNode: HTMLElement };
 const App = ({ targetStylesNode }: AppProps) => {
   const appContainerRef = useRef<HTMLDivElement>(null);
 
+  const preventCatchByHost = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <StyleSheetManager target={targetStylesNode}>
       <AppContextProvider appContainerRef={appContainerRef}>
         <StorageProvider>
-          <AppContainer ref={appContainerRef}>
+          <AppContainer onClick={preventCatchByHost} ref={appContainerRef}>
             <PopupButton />
           </AppContainer>
         </StorageProvider>

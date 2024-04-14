@@ -34,5 +34,5 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled(IconButton)<{ isTransparent: boolean }>`
-  opacity: ${({ isTransparent }) => (isTransparent ? '0.7' : 1)};
+  opacity: ${({ isTransparent }) => (isTransparent ? '0.4' : 1)};
 `;
