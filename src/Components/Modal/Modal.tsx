@@ -54,7 +54,7 @@ const FullScreenContainer = styled.div`
 const ModalContainer = styled.div`
   position: absolute;
   bottom: 56px;
-  background-color: rgb(250, 255, 212);
+  background-color: rgb(195 195 195);
   padding: 8px;
   border: 1px solid gray;
   border-radius: 4px;

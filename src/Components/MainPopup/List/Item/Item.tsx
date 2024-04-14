@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { useState } from 'preact/hooks';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '../../../Icons/EditIcon';
 import TrashIcon from '../../../Icons/TrashIcon';
-import { useState } from 'preact/hooks';
 import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
 import { useGetStorageContext } from '../../../../services/StorageContext';
 import { getTextAreaForPrompt } from '../../../../helpers';
 import { useGetGlobalContext } from '../../../../services/GlobalContext';
+import CopyIcon from '../../../Icons/CopyIcon';
 
 type ItemProps = {
   id: string;
@@ -20,14 +21,19 @@ const Item = (props: ItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const { storage } = useGetStorageContext();
   const { setIsPopupVisible } = useGetGlobalContext();
+  const [textArea] = useState(() => getTextAreaForPrompt() as HTMLInputElement);
 
   const onClick = () => {
     console.log('clicked item', props.title);
-    const textArea = getTextAreaForPrompt() as HTMLInputElement;
-    console.log('🚀 > onClick > textArea:', textArea);
     textArea.value = props.value + '\n';
     textArea.focus();
     setIsPopupVisible(false);
+  };
+
+  const onCopy = () => {
+    navigator.clipboard.writeText(props.value + '\n');
+    setIsPopupVisible(false);
+    textArea.focus();
   };
 
   const onDelete = () => {
@@ -40,6 +46,9 @@ const Item = (props: ItemProps) => {
       <ItemTitle title={props.title} onClick={onClick}>
         {props.title}
       </ItemTitle>
+      <IconButton onClick={onCopy} type="icon">
+        <CopyIcon />
+      </IconButton>
       <IconButton onClick={() => setIsEditing(true)} type="icon">
         <EditIcon />
       </IconButton>
@@ -66,7 +75,7 @@ const ItemContainer = styled.div<{ $isDragging?: boolean }>`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   background-color: ${({ $isDragging }) =>
     $isDragging ? 'rgba(252, 253, 249, 0.43)' : 'unset'};
 `;
@@ -78,6 +87,7 @@ const ItemPosition = styled.div`
 `;
 
 const ItemTitle = styled.button`
+  margin: 0 12px 0 4px !important;
   background: none;
   box-shadow: none;
   border: none;

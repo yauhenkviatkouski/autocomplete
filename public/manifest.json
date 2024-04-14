@@ -14,9 +14,6 @@
       "js": [
         "input_autofill_chrome_extension.index.js"
       ],
-      "css": [
-        "input_autofill_chrome_extension.index.css"
-      ],
       "matches": [
         "https://*/*"
       ]

@@ -62,4 +62,23 @@ const AppContainer = styled.div`
   a:focus {
     text-decoration: underline;
   }
+
+  *::-webkit-scrollbar {
+    background-color: #ffffff83;
+    width: 8px;
+    border-radius: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 2px solid #e2e2e2;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a5;
+  }
+
+  *::-webkit-scrollbar-button {
+    display: none;
+  }
 `;

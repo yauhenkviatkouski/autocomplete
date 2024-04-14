@@ -12,7 +12,6 @@ const manifest = {
   content_scripts: [
     {
       js: [`${packageJson.name}.index.js`],
-      css: [`${packageJson.name}.index.css`],
       matches: ['https://*/*'],
     },
   ],
