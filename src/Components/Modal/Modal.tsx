@@ -56,7 +56,7 @@ const ModalContainer = styled.div`
   bottom: 56px;
   background-color: rgb(223 223 223);
   padding: 8px;
-  box-shadow: rgba(66, 68, 90, 0.835) 20px 19px 35px -28px;
+  box-shadow: rgba(66, 68, 90, 0.35) 5px 7px 20px 0px;
   border-radius: 4px;
 `;
 

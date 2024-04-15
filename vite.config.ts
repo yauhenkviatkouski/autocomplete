@@ -22,7 +22,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         entryFileNames: `${packageJson.name}.[name].js`,
-        assetFileNames: `${packageJson.name}.[name].css`,
       },
     },
   },

@@ -21,7 +21,6 @@ export const sortItemsAndRemoveGaps = (items: Item[]) => {
 };
 
 export const getElementBySelector = (selector: string) => {
-  console.log('CALLED');
   function findInShadowRoots(element: Element) {
     let foundElement: Element | null = null;
     if (element.shadowRoot) {

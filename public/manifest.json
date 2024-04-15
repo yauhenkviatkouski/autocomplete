@@ -6,9 +6,7 @@
   "permissions": [
     "storage"
   ],
-  "action": {
-    "default_popup": "index.html#popup"
-  },
+  "action": {},
   "content_scripts": [
     {
       "js": [
