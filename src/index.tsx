@@ -29,6 +29,11 @@ const renderApp = () => {
 
   if (!chromeExtensionPanelContainer) {
     renderMainContainer();
+    setInterval(() => {
+      if (!document.getElementById(MAIN_CONTAINER_ID)) {
+        renderMainContainer();
+      }
+    }, 2000);
     return;
   }
 
