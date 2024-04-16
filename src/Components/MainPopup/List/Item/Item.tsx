@@ -24,7 +24,6 @@ const Item = (props: ItemProps) => {
   const [textArea] = useState(() => getTextAreaForPrompt() as HTMLInputElement);
 
   const onClick = () => {
-    console.log('clicked item', props.title);
     textArea.value = props.value + '\n';
     textArea.focus();
     setIsPopupVisible(false);

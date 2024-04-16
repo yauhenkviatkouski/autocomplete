@@ -45,4 +45,10 @@ const renderApp = () => {
   }
 };
 
-renderApp();
+// TODO
+setTimeout(
+  () => {
+    renderApp();
+  },
+  location.href.includes('chat.lab') ? 1000 : 100
+);

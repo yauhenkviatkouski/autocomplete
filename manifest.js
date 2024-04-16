@@ -7,7 +7,7 @@ const manifest = {
   description: packageJson.description,
   permissions: ['storage'],
   action: {
-    default_popup: 'index.html#popup',
+    // default_popup: 'index.html#popup',
   },
   content_scripts: [
     {
