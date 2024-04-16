@@ -25,7 +25,7 @@ const Modal = (props: ModalProps) => {
 
   return createPortal(
     <>
-      <FullScreenContainer onClick={props.onClose}></FullScreenContainer>
+      {/* <FullScreenContainer onClick={props.onClose}></FullScreenContainer> */}
       <ModalContainer ref={ref}>
         <ModalHeader>
           <IconButton color="error" onClick={props.onClose}>
@@ -41,15 +41,15 @@ const Modal = (props: ModalProps) => {
 
 export default Modal;
 
-const FullScreenContainer = styled.div`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-`;
+// const FullScreenContainer = styled.div`
+//   position: fixed;
+//   width: 100vw;
+//   height: 100vh;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+// `;
 
 const ModalContainer = styled.div`
   position: absolute;
