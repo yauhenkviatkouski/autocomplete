@@ -18,7 +18,7 @@ const PopupButton = () => {
         isTransparent={!isPopupVisible}
         color="success"
         aria-label="Add text"
-        onClick={() => setIsPopupVisible(true)}
+        onClick={() => setIsPopupVisible((prevState) => !prevState)}
       >
         <InputIcon />
       </StyledButton>
