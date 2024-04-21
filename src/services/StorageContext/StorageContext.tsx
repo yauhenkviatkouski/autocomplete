@@ -24,7 +24,8 @@ export const StorageProvider = ({ children }: StorageProviderProps) => {
 
   useEffect(() => {
     async function fetchData() {
-      setItems(await storage.getItems());
+      const items = await storage.getItems();
+      setItems(items.sort((a, b) => a.position - b.position));
     }
     fetchData();
   }, [storage]);

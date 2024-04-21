@@ -1,17 +1,11 @@
 import { Item } from './Item';
 import { useDragAndDrop } from '../../../hooks/useDragAndDrop';
-import { useMemo } from 'preact/hooks';
 import { useGetStorageContext } from '../../../services/StorageContext';
 
 import styled from 'styled-components';
 
 const List = () => {
   const { items, storage } = useGetStorageContext();
-
-  const sortedList = useMemo(
-    () => items.sort((a, b) => a.position - b.position),
-    [items]
-  );
 
   const {
     handleDragOver,
@@ -20,7 +14,7 @@ const List = () => {
     draggedItemIndex,
     items: draggableItems,
   } = useDragAndDrop({
-    initialItems: sortedList,
+    initialItems: items,
     onDrop: (items) => storage.setItems(items),
   });
 

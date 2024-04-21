@@ -4,9 +4,11 @@ import { Modal } from '../Modal';
 import styled from 'styled-components';
 import InputIcon from '../Icons/InputIcon';
 import { useGetGlobalContext } from '../../services/GlobalContext';
+import { useHotKeysController } from '../../hooks/useHotKeysController';
 
 const PopupButton = () => {
   const { isPopupVisible, setIsPopupVisible } = useGetGlobalContext();
+  useHotKeysController();
   return (
     <StyledContainer>
       {isPopupVisible && (
