@@ -38,8 +38,13 @@ const StyledButton = styled.button<{ color?: 'success' | 'error'; isIcon?: boole
 
       transition: transform 0.2s;
 
-      &:active {
+      &:active:not(:disabled) {
         transform: translateY(3px);
+      }
+
+      &:disabled {
+        background: gray;
+        cursor: not-allowed;
       }
     `;
   }}
