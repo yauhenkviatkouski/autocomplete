@@ -1,10 +1,10 @@
-import IconButton from '@mui/material/IconButton';
 import { MainPopup } from '../MainPopup';
 import { Modal } from '../Modal';
 import styled from 'styled-components';
 import InputIcon from '../Icons/InputIcon';
 import { useGetGlobalContext } from '../../services/GlobalContext';
 import { useHotKeysController } from '../../hooks/useHotKeysController';
+import { Button } from '../Shared';
 
 const PopupButton = () => {
   const { isPopupVisible, setIsPopupVisible } = useGetGlobalContext();
@@ -19,6 +19,7 @@ const PopupButton = () => {
       <StyledButton
         isTransparent={!isPopupVisible}
         color="success"
+        isIcon
         aria-label="Add text"
         onClick={() => setIsPopupVisible((prevState) => !prevState)}
       >
@@ -35,6 +36,6 @@ const StyledContainer = styled.div`
   bottom: 16px;
 `;
 
-const StyledButton = styled(IconButton)<{ isTransparent: boolean }>`
+const StyledButton = styled(Button)<{ isTransparent: boolean }>`
   opacity: ${({ isTransparent }) => (isTransparent ? '0.4' : 1)};
 `;

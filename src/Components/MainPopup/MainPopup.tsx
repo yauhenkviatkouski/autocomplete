@@ -1,8 +1,8 @@
 import { useState } from 'preact/hooks';
 import styled from 'styled-components';
-import Button from '@mui/material/Button';
 import { List } from './List';
 import EditNotePopup from '../EditNotePopup/EditNotePopup';
+import { Button } from '../Shared';
 
 const MainPopup = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -12,9 +12,7 @@ const MainPopup = () => {
       <StyledMainPopup>
         <List />
         <StyledMainPopupAddButtonContainer>
-          <Button variant="contained" onClick={() => setIsEditing(true)}>
-            Add
-          </Button>
+          <Button onClick={() => setIsEditing(true)}>Add</Button>
         </StyledMainPopupAddButtonContainer>
       </StyledMainPopup>
       {isEditing && <EditNotePopup onClose={() => setIsEditing(false)} />}

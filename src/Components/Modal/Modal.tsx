@@ -1,12 +1,12 @@
 import { ComponentChildren } from 'preact';
 import { createPortal } from 'preact/compat';
 import { useRef } from 'preact/hooks';
-import IconButton from '@mui/material/IconButton';
 import useKeyHandler from '../../hooks/useKeyHandler';
 
 import CloseIcon from '../Icons/CloseIcon';
 import { useGetGlobalContext } from '../../services/GlobalContext';
 import styled from 'styled-components';
+import { Button } from '../Shared';
 
 type ModalProps = {
   onClose: () => void;
@@ -28,9 +28,9 @@ const Modal = (props: ModalProps) => {
       {/* <FullScreenContainer onClick={props.onClose}></FullScreenContainer> */}
       <ModalContainer ref={ref}>
         <ModalHeader>
-          <IconButton color="error" onClick={props.onClose}>
+          <Button isIcon color="error" onClick={props.onClose}>
             <CloseIcon />
-          </IconButton>
+          </Button>
         </ModalHeader>
         {props.children}
       </ModalContainer>
@@ -52,6 +52,7 @@ export default Modal;
 // `;
 
 const ModalContainer = styled.div`
+  min-height: 260px;
   position: absolute;
   bottom: 56px;
   background-color: rgb(223 223 223);

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useState } from 'preact/hooks';
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '../../../Icons/EditIcon';
 import TrashIcon from '../../../Icons/TrashIcon';
 import EditNotePopup from '../../../EditNotePopup/EditNotePopup';
@@ -8,6 +7,7 @@ import { useGetStorageContext } from '../../../../services/StorageContext';
 import { getTextAreaForPrompt } from '../../../../helpers';
 import { useGetGlobalContext } from '../../../../services/GlobalContext';
 import CopyIcon from '../../../Icons/CopyIcon';
+import { Button } from '../../../Shared';
 
 type ItemProps = {
   id: string;
@@ -45,15 +45,15 @@ const Item = (props: ItemProps) => {
       <ItemTitle title={props.title} onClick={onClick}>
         {props.title}
       </ItemTitle>
-      <IconButton onClick={onCopy} type="icon">
+      <Button isIcon onClick={onCopy} type="icon">
         <CopyIcon />
-      </IconButton>
-      <IconButton onClick={() => setIsEditing(true)} type="icon">
+      </Button>
+      <Button isIcon onClick={() => setIsEditing(true)} type="icon">
         <EditIcon />
-      </IconButton>
-      <IconButton onClick={onDelete} type="icon">
+      </Button>
+      <Button isIcon onClick={onDelete} type="icon">
         <TrashIcon />
-      </IconButton>
+      </Button>
 
       {isEditing && (
         <EditNotePopup
