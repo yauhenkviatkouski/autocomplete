@@ -4,9 +4,10 @@ import { DevelopmentPage } from './Components/DevelopmentPage';
 import { CHROME_PANEL_CONTAINER_ID, LOCALHOST, MAIN_CONTAINER_ID } from './variables';
 
 import App from './App';
-import { getTextAreaForPrompt } from './helpers';
+import { getElementBySelector, getTextAreaForPrompt } from './helpers';
 
 const renderMainContainer = () => {
+  console.log(MAIN_CONTAINER_ID + ' render');
   const textarea = getTextAreaForPrompt();
 
   if (textarea) {
@@ -30,7 +31,7 @@ const renderApp = () => {
   if (!chromeExtensionPanelContainer) {
     renderMainContainer();
     setInterval(() => {
-      if (!document.getElementById(MAIN_CONTAINER_ID)) {
+      if (!getElementBySelector(`#${MAIN_CONTAINER_ID}`)) {
         renderMainContainer();
       }
     }, 2000);
@@ -45,10 +46,4 @@ const renderApp = () => {
   }
 };
 
-// TODO
-setTimeout(
-  () => {
-    renderApp();
-  },
-  location.href.includes('chat.lab') ? 1000 : 100
-);
+renderApp();
