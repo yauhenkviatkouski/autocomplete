@@ -12,7 +12,12 @@ const manifest = {
   content_scripts: [
     {
       js: [`${packageJson.name}.index.js`],
-      matches: ['https://*/*'],
+      matches: [
+        'https://chatgpt.com/*',
+        'https://copilot.microsoft.com/*',
+        'https://gemini.google.com/*',
+        'https://chat.lab/*',
+      ],
     },
   ],
 };

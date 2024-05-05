@@ -13,7 +13,10 @@
         "input_autofill_chrome_extension.index.js"
       ],
       "matches": [
-        "https://*/*"
+        "https://chatgpt.com/*",
+        "https://copilot.microsoft.com/*",
+        "https://gemini.google.com/*",
+        "https://chat.lab/*"
       ]
     }
   ]
