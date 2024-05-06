@@ -16,7 +16,7 @@ const manifest = {
         'https://chatgpt.com/*',
         'https://copilot.microsoft.com/*',
         'https://gemini.google.com/*',
-        'https://chat.lab/*',
+        'https://*.chat.lab.epam.com/*',
       ],
     },
   ],
