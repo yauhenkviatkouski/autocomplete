@@ -24,7 +24,13 @@ const Item = (props: ItemProps) => {
   const [textArea] = useState(() => getTextAreaForPrompt() as HTMLInputElement);
 
   const onClick = () => {
-    textArea.value = props.value + '\n';
+    const gptTextArea = textArea?.parentElement?.querySelector('div[contenteditable="true"] p');
+    console.log('gptTextArea', gptTextArea)
+    if (gptTextArea) {
+      textArea.innerText = props.value + '\n'
+    } else {
+      textArea.value = props.value + '\n';
+    }
     textArea.focus();
     setIsPopupVisible(false);
   };

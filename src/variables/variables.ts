@@ -10,5 +10,6 @@ export const SETTINGS = {
     'textarea#prompt-textarea',
     'textarea#searchbox',
     'rich-textarea.text-input-field_textarea',
+    'textarea[placeholder="Message ChatGPT"]'
   ],
 };
